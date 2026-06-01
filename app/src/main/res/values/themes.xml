@@ -1,8 +1,28 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
     <style name="Base.Theme.CampusForum" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <!-- Keep Phase 0 visually locked to the light green academic Paraflow direction. -->
+        <item name="colorPrimary">@color/cf_primary</item>
+        <item name="colorPrimaryDark">@color/cf_primary_dark</item>
+        <item name="colorAccent">@color/cf_primary_light</item>
+        <item name="colorOnPrimary">@color/cf_on_primary</item>
+        <item name="colorSecondary">@color/cf_primary_light</item>
+        <item name="colorOnSecondary">@color/cf_on_primary</item>
+        <item name="colorSurface">@color/cf_background</item>
+        <item name="colorOnSurface">@color/cf_on_background</item>
+        <item name="colorSurfaceVariant">@color/cf_surface_secondary</item>
+        <item name="colorOnSurfaceVariant">@color/cf_text_secondary</item>
+        <item name="colorError">@color/cf_error_text</item>
+        <item name="colorErrorContainer">@color/cf_error</item>
+        <item name="android:windowBackground">@color/cf_background</item>
+        <item name="android:colorBackground">@color/cf_background</item>
+        <item name="android:textColorPrimary">@color/cf_text_primary</item>
+        <item name="android:textColorSecondary">@color/cf_text_secondary</item>
+        <item name="android:statusBarColor">@color/cf_background</item>
+        <item name="android:navigationBarColor">@color/cf_background</item>
+        <item name="android:windowLightStatusBar">true</item>
+        <item name="android:windowLightNavigationBar" tools:targetApi="o_mr1">true</item>
+        <item name="android:fontFamily">sans</item>
+        <item name="android:forceDarkAllowed">false</item>
     </style>
 
     <style name="Theme.CampusForum" parent="Base.Theme.CampusForum" />
