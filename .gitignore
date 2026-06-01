@@ -1,0 +1,52 @@
+*.iml
+.gradle
+/local.properties
+/.idea/caches
+/.idea/libraries
+/.idea/modules.xml
+/.idea/workspace.xml
+/.idea/navEditor.xml
+/.idea/assetWizardSettings.xml
+.DS_Store
+/build
+/captures
+.externalNativeBuild
+.cxx
+local.properties
+# Android Studio / IntelliJ
+.idea/
+*.iml
+*.iws
+*.ipr
+captures/
+
+# Gradle
+.gradle/
+build/
+**/build/
+
+# Local machine settings
+local.properties
+
+# Native / C++ build outputs
+.cxx/
+.externalNativeBuild/
+
+# Logs
+*.log
+
+# macOS / Windows
+.DS_Store
+Thumbs.db
+
+# Keystore / signing
+*.jks
+*.keystore
+key.properties
+
+# Misc
+*.tmp
+*.swp
+
+extract_android_source.py
+campusforum_project_source.txt
