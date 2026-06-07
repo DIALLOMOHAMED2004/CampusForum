@@ -8,95 +8,25 @@
     android:background="@color/cf_background"
     tools:context=".MainActivity">
 
-    <LinearLayout
-        android:id="@+id/phase_zero_preview"
+    <FrameLayout
+        android:id="@+id/main_fragment_container"
         android:layout_width="0dp"
-        android:padding="@dimen/cf_screen_padding"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@id/main_bottom_navigation"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/main_bottom_navigation"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
+        android:background="@color/cf_background"
+        app:itemIconTint="@color/bottom_nav_item_color"
+        app:itemTextColor="@color/bottom_nav_item_color"
+        app:labelVisibilityMode="labeled"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="CampusForum"
-            android:textAppearance="@style/TextAppearance.CampusForum.Headline" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/cf_spacing_2"
-            android:text="Validation visuelle de la direction Paraflow"
-            android:textAppearance="@style/TextAppearance.CampusForum.Body" />
-
-        <EditText
-            android:id="@+id/search_preview"
-            style="@style/Widget.CampusForum.Input"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/cf_section_spacing"
-            android:autofillHints=""
-            android:hint="Rechercher un sujet"
-            android:inputType="text" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/cf_spacing_4"
-            android:orientation="horizontal">
-
-            <TextView
-                style="@style/Widget.CampusForum.Chip.Selected"
-                android:layout_width="wrap_content"
-                android:layout_height="@dimen/cf_chip_height"
-                android:gravity="center"
-                android:text="Toutes" />
-
-            <TextView
-                style="@style/Widget.CampusForum.Chip.Default"
-                android:layout_width="wrap_content"
-                android:layout_height="@dimen/cf_chip_height"
-                android:layout_marginStart="@dimen/cf_spacing_2"
-                android:gravity="center"
-                android:text="Informatique" />
-        </LinearLayout>
-
-        <LinearLayout
-            style="@style/Widget.CampusForum.Card"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/cf_section_spacing"
-            android:orientation="vertical">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Comment organiser un groupe de revision ?"
-                android:textAppearance="@style/TextAppearance.CampusForum.Title" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/cf_spacing_2"
-                android:text="Discussion exemple pour verifier les cartes, textes et surfaces CampusForum."
-                android:textAppearance="@style/TextAppearance.CampusForum.BodySmall" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/cf_spacing_3"
-                android:text="3 reponses - Aujourd hui"
-                android:textAppearance="@style/TextAppearance.CampusForum.Caption" />
-        </LinearLayout>
-
-        <Button
-            style="@style/Widget.CampusForum.Button.Primary"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/cf_section_spacing"
-            android:text="Creer un sujet" />
-    </LinearLayout>
+        app:menu="@menu/bottom_nav_menu" />
 </androidx.constraintlayout.widget.ConstraintLayout>

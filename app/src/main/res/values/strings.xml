@@ -1,3 +1,105 @@
 <resources>
     <string name="app_name">CampusForum</string>
+
+    <!-- Common -->
+    <string name="cf_action_back">Retour</string>
+    <string name="cf_action_continue">Continuer</string>
+    <string name="cf_action_cancel">Annuler</string>
+    <string name="cf_action_save">Enregistrer</string>
+    <string name="cf_action_refresh">Actualiser</string>
+    <string name="cf_action_search">Rechercher</string>
+    <string name="cf_nav_home">Accueil</string>
+    <string name="cf_label_email">Adresse e-mail</string>
+    <string name="cf_label_password">Mot de passe</string>
+    <string name="cf_label_password_confirm">Confirmer le mot de passe</string>
+    <string name="cf_label_username">Nom utilisateur</string>
+    <string name="cf_label_security_question">Question de sécurité</string>
+    <string name="cf_label_security_answer">Réponse de sécurité</string>
+    <string name="cf_message_required_fields">Champs obligatoires</string>
+    <string name="cf_message_generic_error">Une erreur est survenue</string>
+    <string name="cf_message_success">Action effectuée avec succès</string>
+    <string name="cf_brand_initials">CF</string>
+
+    <!-- Splash -->
+    <string name="cf_splash_tagline">Forum académique local</string>
+    <string name="cf_splash_offline_note">Fonctionne localement, sans connexion obligatoire</string>
+
+    <!-- Authentication -->
+    <string name="cf_login_title">Bienvenue</string>
+    <string name="cf_login_subtitle">Connectez-vous à votre compte</string>
+    <string name="cf_login_action">Se connecter</string>
+    <string name="cf_login_forgot_password">Mot de passe oublié ?</string>
+    <string name="cf_login_new_user">Nouveau sur CampusForum ?</string>
+    <string name="cf_login_create_account">Créer un compte</string>
+    <string name="cf_login_error_invalid_credentials">E-mail ou mot de passe incorrect</string>
+
+    <string name="cf_register_title">Créer un compte</string>
+    <string name="cf_register_subtitle">Rejoignez la communauté académique</string>
+    <string name="cf_register_action">Créer mon compte</string>
+    <string name="cf_register_already_member">Déjà inscrit ?</string>
+    <string name="cf_register_login">Se connecter</string>
+    <string name="cf_register_security_question_hint">Choisir une question de sécurité</string>
+
+    <string name="cf_forgot_title">Récupération de compte</string>
+    <string name="cf_forgot_subtitle">Répondez à votre question de sécurité</string>
+    <string name="cf_forgot_step_identification">Étape 1 : identification</string>
+    <string name="cf_forgot_step_security_question">Étape 2 : question de sécurité</string>
+    <string name="cf_forgot_step_new_password">Étape 3 : nouveau mot de passe</string>
+    <string name="cf_forgot_security_question_placeholder">Votre question de sécurité apparaîtra ici</string>
+    <string name="cf_forgot_new_password">Nouveau mot de passe</string>
+    <string name="cf_forgot_verify">Vérifier</string>
+    <string name="cf_forgot_reset">Réinitialiser</string>
+
+    <!-- Home -->
+    <string name="cf_home_title">CampusForum</string>
+    <string name="cf_home_subtitle">Discussions académiques locales entre étudiants et enseignants</string>
+    <string name="cf_home_search_hint">Rechercher des sujets</string>
+    <string name="cf_home_filter_all">Toutes</string>
+    <string name="cf_category_computer_science">Informatique</string>
+    <string name="cf_category_mathematics">Mathématiques</string>
+    <string name="cf_category_general">Général</string>
+    <string name="cf_home_create_topic">Créer un sujet</string>
+    <string name="cf_home_empty_title">Aucun sujet</string>
+    <string name="cf_home_empty_message">Soyez le premier à créer un sujet</string>
+    <string name="cf_demo_topic_group_title">Comment organiser un groupe de révision ?</string>
+    <string name="cf_demo_topic_group_body">Proposition de créneau et méthode de travail pour préparer les examens ensemble.</string>
+    <string name="cf_demo_topic_database_title">Besoin aide sur les jointures SQL</string>
+    <string name="cf_demo_topic_database_body">Discussion courte autour des jointures internes, externes et des exemples pratiques.</string>
+    <string name="cf_demo_topic_meta_today">3 réponses - Aujourd’hui</string>
+    <string name="cf_demo_topic_meta_yesterday">1 réponse - Hier</string>
+
+    <!-- Dashboard -->
+    <string name="cf_dashboard_title">Tableau de bord</string>
+    <string name="cf_dashboard_active_topics">Sujets actifs</string>
+    <string name="cf_dashboard_replies">Réponses</string>
+    <string name="cf_dashboard_categories">Catégories</string>
+    <string name="cf_dashboard_members">Membres actifs</string>
+    <string name="cf_dashboard_recent_activity">Dernières activités</string>
+    <string name="cf_dashboard_stat_topics_count">12</string>
+    <string name="cf_dashboard_stat_replies_count">34</string>
+    <string name="cf_dashboard_stat_categories_count">6</string>
+    <string name="cf_dashboard_stat_members_count">18</string>
+    <string name="cf_dashboard_activity_topic_created">Nouveau sujet publié en Informatique</string>
+    <string name="cf_dashboard_activity_reply_added">Réponse ajoutée dans Mathématiques</string>
+    <string name="cf_dashboard_activity_time_recent">Il y a 10 min</string>
+    <string name="cf_dashboard_activity_time_today">Aujourd’hui</string>
+
+    <!-- Profile -->
+    <string name="cf_profile_title">Mon profil</string>
+    <string name="cf_profile_avatar_initials">AD</string>
+    <string name="cf_profile_demo_name">Amina Diallo</string>
+    <string name="cf_profile_demo_email">amina.diallo@campus.local</string>
+    <string name="cf_profile_role_user">USER</string>
+    <string name="cf_profile_about">À propos</string>
+    <string name="cf_profile_edit_bio">Modifier</string>
+    <string name="cf_profile_empty_bio">Ajoutez une bio pour vous présenter</string>
+    <string name="cf_profile_demo_bio">Étudiante active, intéressée par les bases de données et les groupes de révision.</string>
+    <string name="cf_profile_my_topics">Mes sujets</string>
+    <string name="cf_profile_my_replies">Mes réponses</string>
+    <string name="cf_profile_topics_count">4</string>
+    <string name="cf_profile_replies_count">9</string>
+    <string name="cf_profile_recent_topics">Mes sujets récents</string>
+    <string name="cf_profile_recent_topic_one">Préparer le contrôle de base de données</string>
+    <string name="cf_profile_recent_topic_two">Ressources utiles en algorithmique</string>
+    <string name="cf_profile_logout">Déconnexion</string>
 </resources>

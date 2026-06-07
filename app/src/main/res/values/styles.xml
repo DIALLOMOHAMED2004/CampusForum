@@ -12,6 +12,18 @@
         <item name="android:textSize">@dimen/cf_text_body</item>
     </style>
 
+    <style name="Widget.CampusForum.Button.Secondary" parent="Widget.MaterialComponents.Button">
+        <item name="android:background">@drawable/bg_button_secondary_outline</item>
+        <item name="backgroundTint">@null</item>
+        <item name="android:textColor">@color/cf_primary</item>
+        <item name="android:minHeight">@dimen/cf_button_height</item>
+        <item name="android:paddingStart">@dimen/cf_spacing_4</item>
+        <item name="android:paddingEnd">@dimen/cf_spacing_4</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">@dimen/cf_text_body</item>
+    </style>
+
     <style name="Widget.CampusForum.Input" parent="@android:style/Widget.EditText">
         <item name="android:background">@drawable/bg_input</item>
         <item name="android:textColor">@color/cf_text_primary</item>
@@ -20,6 +32,12 @@
         <item name="android:paddingStart">@dimen/cf_spacing_4</item>
         <item name="android:paddingEnd">@dimen/cf_spacing_4</item>
         <item name="android:textSize">@dimen/cf_text_body</item>
+    </style>
+
+    <style name="Widget.CampusForum.TextLink" parent="@android:style/Widget.TextView">
+        <item name="android:textColor">@color/cf_primary</item>
+        <item name="android:textSize">@dimen/cf_text_body_small</item>
+        <item name="android:textStyle">bold</item>
     </style>
 
     <style name="Widget.CampusForum.Card" parent="@android:style/Widget">
@@ -72,5 +90,15 @@
     <style name="TextAppearance.CampusForum.Caption" parent="TextAppearance.MaterialComponents.Caption">
         <item name="android:textColor">@color/cf_text_tertiary</item>
         <item name="android:textSize">@dimen/cf_text_caption</item>
+    </style>
+
+    <style name="TextAppearance.CampusForum.Message.Error" parent="TextAppearance.MaterialComponents.Body2">
+        <item name="android:textColor">@color/cf_error_text</item>
+        <item name="android:textSize">@dimen/cf_text_body_small</item>
+    </style>
+
+    <style name="TextAppearance.CampusForum.Message.Success" parent="TextAppearance.MaterialComponents.Body2">
+        <item name="android:textColor">@color/cf_success_text</item>
+        <item name="android:textSize">@dimen/cf_text_body_small</item>
     </style>
 </resources>

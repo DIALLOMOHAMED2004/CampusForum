@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/cf_background"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="@dimen/cf_screen_padding">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/cf_register_title"
+            android:textAppearance="@style/TextAppearance.CampusForum.Headline" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/cf_spacing_2"
+            android:text="@string/cf_register_subtitle"
+            android:textAppearance="@style/TextAppearance.CampusForum.Body" />
+
+        <EditText
+            android:id="@+id/register_username_input"
+            style="@style/Widget.CampusForum.Input"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/cf_section_spacing"
+            android:autofillHints="username"
+            android:hint="@string/cf_label_username"
+            android:inputType="textPersonName" />
+
+        <EditText
+            android:id="@+id/register_email_input"
+            style="@style/Widget.CampusForum.Input"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/cf_spacing_3"
+            android:autofillHints="emailAddress"
+            android:hint="@string/cf_label_email"
+            android:inputType="textEmailAddress" />
+
+        <EditText
+            android:id="@+id/register_password_input"
+            style="@style/Widget.CampusForum.Input"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/cf_spacing_3"
+            android:autofillHints="newPassword"
+            android:hint="@string/cf_label_password"
+            android:inputType="textPassword" />
+
+        <EditText
+            android:id="@+id/register_password_confirm_input"
+            style="@style/Widget.CampusForum.Input"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/cf_spacing_3"
+            android:autofillHints="newPassword"
+            android:hint="@string/cf_label_password_confirm"
+            android:inputType="textPassword" />
+
+        <EditText
+            android:id="@+id/register_security_question_input"
+            style="@style/Widget.CampusForum.Input"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/cf_spacing_3"
+            android:hint="@string/cf_register_security_question_hint"
+            android:inputType="text" />
+
+        <EditText
+            android:id="@+id/register_security_answer_input"
+            style="@style/Widget.CampusForum.Input"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/cf_spacing_3"
+            android:hint="@string/cf_label_security_answer"
+            android:inputType="text" />
+
+        <Button
+            android:id="@+id/register_button"
+            style="@style/Widget.CampusForum.Button.Primary"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/cf_section_spacing"
+            android:text="@string/cf_register_action" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/cf_section_spacing"
+            android:gravity="center"
+            android:text="@string/cf_register_already_member"
+            android:textAppearance="@style/TextAppearance.CampusForum.Caption" />
+
+        <TextView
+            android:id="@+id/register_login_link"
+            style="@style/Widget.CampusForum.TextLink"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/cf_spacing_2"
+            android:layout_marginBottom="@dimen/cf_spacing_6"
+            android:text="@string/cf_register_login" />
+    </LinearLayout>
+</ScrollView>
