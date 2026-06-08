@@ -41,113 +41,49 @@
             android:scrollbars="none">
 
             <LinearLayout
+                android:id="@+id/home_category_chips_container"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
                 <TextView
+                    android:id="@+id/home_filter_all_chip"
                     style="@style/Widget.CampusForum.Chip.Selected"
                     android:layout_width="wrap_content"
                     android:layout_height="@dimen/cf_chip_height"
                     android:gravity="center"
                     android:text="@string/cf_home_filter_all" />
-
-                <TextView
-                    style="@style/Widget.CampusForum.Chip.Default"
-                    android:layout_width="wrap_content"
-                    android:layout_height="@dimen/cf_chip_height"
-                    android:layout_marginStart="@dimen/cf_spacing_2"
-                    android:gravity="center"
-                    android:text="@string/cf_category_computer_science" />
-
-                <TextView
-                    style="@style/Widget.CampusForum.Chip.Default"
-                    android:layout_width="wrap_content"
-                    android:layout_height="@dimen/cf_chip_height"
-                    android:layout_marginStart="@dimen/cf_spacing_2"
-                    android:gravity="center"
-                    android:text="@string/cf_category_mathematics" />
-
-                <TextView
-                    style="@style/Widget.CampusForum.Chip.Default"
-                    android:layout_width="wrap_content"
-                    android:layout_height="@dimen/cf_chip_height"
-                    android:layout_marginStart="@dimen/cf_spacing_2"
-                    android:gravity="center"
-                    android:text="@string/cf_category_general" />
             </LinearLayout>
         </HorizontalScrollView>
 
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/home_topics_recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/cf_section_spacing"
+            android:nestedScrollingEnabled="false" />
+
         <LinearLayout
+            android:id="@+id/home_empty_state"
             style="@style/Widget.CampusForum.Card"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/cf_section_spacing"
-            android:orientation="vertical">
-
-            <TextView
-                style="@style/Widget.CampusForum.Chip.Default"
-                android:layout_width="wrap_content"
-                android:layout_height="@dimen/cf_chip_height"
-                android:gravity="center"
-                android:text="@string/cf_category_general" />
+            android:orientation="vertical"
+            android:visibility="gone">
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/cf_spacing_3"
-                android:text="@string/cf_demo_topic_group_title"
+                android:text="@string/cf_home_empty_title"
                 android:textAppearance="@style/TextAppearance.CampusForum.Title" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/cf_spacing_2"
-                android:text="@string/cf_demo_topic_group_body"
+                android:text="@string/cf_home_empty_message"
                 android:textAppearance="@style/TextAppearance.CampusForum.BodySmall" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/cf_spacing_3"
-                android:text="@string/cf_demo_topic_meta_today"
-                android:textAppearance="@style/TextAppearance.CampusForum.Caption" />
-        </LinearLayout>
-
-        <LinearLayout
-            style="@style/Widget.CampusForum.Card"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/cf_spacing_4"
-            android:orientation="vertical">
-
-            <TextView
-                style="@style/Widget.CampusForum.Chip.Default"
-                android:layout_width="wrap_content"
-                android:layout_height="@dimen/cf_chip_height"
-                android:gravity="center"
-                android:text="@string/cf_category_computer_science" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/cf_spacing_3"
-                android:text="@string/cf_demo_topic_database_title"
-                android:textAppearance="@style/TextAppearance.CampusForum.Title" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/cf_spacing_2"
-                android:text="@string/cf_demo_topic_database_body"
-                android:textAppearance="@style/TextAppearance.CampusForum.BodySmall" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/cf_spacing_3"
-                android:text="@string/cf_demo_topic_meta_yesterday"
-                android:textAppearance="@style/TextAppearance.CampusForum.Caption" />
         </LinearLayout>
 
         <Button

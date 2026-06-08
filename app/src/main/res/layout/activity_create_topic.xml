@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/cf_background"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="@dimen/cf_screen_padding">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/cf_create_topic_title"
+            android:textAppearance="@style/TextAppearance.CampusForum.Headline" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/cf_spacing_2"
+            android:text="@string/cf_create_topic_subtitle"
+            android:textAppearance="@style/TextAppearance.CampusForum.Body" />
+
+        <EditText
+            android:id="@+id/create_topic_title_input"
+            style="@style/Widget.CampusForum.Input"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/cf_section_spacing"
+            android:hint="@string/cf_create_topic_title_hint"
+            android:inputType="textCapSentences" />
+
+        <Spinner
+            android:id="@+id/create_topic_category_spinner"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/cf_input_height"
+            android:layout_marginTop="@dimen/cf_spacing_3"
+            android:background="@drawable/bg_input"
+            android:paddingStart="@dimen/cf_spacing_4"
+            android:paddingEnd="@dimen/cf_spacing_4" />
+
+        <EditText
+            android:id="@+id/create_topic_content_input"
+            style="@style/Widget.CampusForum.Input"
+            android:layout_width="match_parent"
+            android:layout_height="160dp"
+            android:layout_marginTop="@dimen/cf_spacing_3"
+            android:gravity="top|start"
+            android:hint="@string/cf_create_topic_content_hint"
+            android:inputType="textMultiLine|textCapSentences"
+            android:minLines="6" />
+
+        <Button
+            android:id="@+id/create_topic_publish_button"
+            style="@style/Widget.CampusForum.Button.Primary"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/cf_section_spacing"
+            android:text="@string/cf_create_topic_publish" />
+
+        <Button
+            android:id="@+id/create_topic_cancel_button"
+            style="@style/Widget.CampusForum.Button.Secondary"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/cf_spacing_3"
+            android:layout_marginBottom="@dimen/cf_spacing_6"
+            android:text="@string/cf_action_cancel" />
+    </LinearLayout>
+</ScrollView>

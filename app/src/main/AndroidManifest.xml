@@ -12,6 +12,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CampusForum">
         <activity
+            android:name=".ui.topic.TopicDetailActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.topic.CreateTopicActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.auth.ForgotPasswordActivity"
             android:exported="false" />
         <activity
