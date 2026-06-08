@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/Widget.CampusForum.Card"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="@dimen/cf_spacing_4"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/item_topic_category"
+        style="@style/Widget.CampusForum.Chip.Default"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/cf_chip_height"
+        android:gravity="center" />
+
+    <TextView
+        android:id="@+id/item_topic_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/cf_spacing_3"
+        android:ellipsize="end"
+        android:maxLines="2"
+        android:textAppearance="@style/TextAppearance.CampusForum.Title" />
+
+    <TextView
+        android:id="@+id/item_topic_preview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/cf_spacing_2"
+        android:ellipsize="end"
+        android:maxLines="2"
+        android:textAppearance="@style/TextAppearance.CampusForum.BodySmall" />
+
+    <TextView
+        android:id="@+id/item_topic_author"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/cf_spacing_3"
+        android:textAppearance="@style/TextAppearance.CampusForum.Caption" />
+
+    <TextView
+        android:id="@+id/item_topic_meta"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/cf_spacing_1"
+        android:textAppearance="@style/TextAppearance.CampusForum.Caption" />
+</LinearLayout>

@@ -19,6 +19,9 @@
     <string name="cf_message_generic_error">Une erreur est survenue</string>
     <string name="cf_message_success">Action effectuée avec succès</string>
     <string name="cf_brand_initials">CF</string>
+    <string name="cf_author_format">Par %1$s</string>
+    <string name="cf_topic_meta_format">%1$s - %2$d %3$s</string>
+    <string name="cf_topic_detail_created_at_format">Publié %1$s</string>
 
     <!-- Splash -->
     <string name="cf_splash_tagline">Forum académique local</string>
@@ -68,6 +71,36 @@
     <string name="cf_demo_topic_meta_today">3 réponses - Aujourd’hui</string>
     <string name="cf_demo_topic_meta_yesterday">1 réponse - Hier</string>
 
+    <!-- Create Topic -->
+    <string name="cf_create_topic_title">Nouveau sujet</string>
+    <string name="cf_create_topic_subtitle">Posez une question ou partagez une information académique</string>
+    <string name="cf_create_topic_title_hint">Titre du sujet</string>
+    <string name="cf_create_topic_content_hint">Décrivez votre question ou votre information</string>
+    <string name="cf_create_topic_category_placeholder">Sélectionnez une catégorie</string>
+    <string name="cf_create_topic_publish">Publier</string>
+    <string name="cf_create_topic_success">Sujet créé avec succès</string>
+    <string name="cf_create_topic_error_title">Le titre doit contenir au moins 5 caractères.</string>
+    <string name="cf_create_topic_error_content">Le contenu doit contenir au moins 10 caractères.</string>
+    <string name="cf_create_topic_error_category">Sélectionnez une catégorie.</string>
+    <string name="cf_create_topic_error_session">Session utilisateur introuvable.</string>
+    <string name="cf_create_topic_error_publish">Impossible de créer le sujet.</string>
+
+    <!-- Topic Detail -->
+    <string name="cf_topic_detail_content_label">Contenu</string>
+    <string name="cf_topic_detail_author_label">Auteur :</string>
+    <string name="cf_topic_detail_created_at_label">Créé le :</string>
+    <string name="cf_topic_detail_reply_label">réponse</string>
+    <string name="cf_topic_detail_replies_label">réponses</string>
+    <string name="cf_topic_detail_error_missing">Sujet introuvable ou supprimé.</string>
+    <string name="cf_topic_detail_replies_section_title">Réponses</string>
+    <string name="cf_topic_detail_replies_empty_title">Aucune réponse pour le moment.</string>
+    <string name="cf_topic_detail_reply_form_title">Ajouter une réponse</string>
+    <string name="cf_topic_detail_reply_hint">Écrire une réponse...</string>
+    <string name="cf_topic_detail_reply_send">Envoyer</string>
+    <string name="cf_topic_detail_reply_error_content">La réponse doit contenir au moins 2 caractères.</string>
+    <string name="cf_topic_detail_reply_success">Réponse ajoutée avec succès</string>
+    <string name="cf_topic_detail_reply_error_publish">Impossible d’ajouter la réponse.</string>
+
     <!-- Dashboard -->
     <string name="cf_dashboard_title">Tableau de bord</string>
     <string name="cf_dashboard_active_topics">Sujets actifs</string>
@@ -83,6 +116,9 @@
     <string name="cf_dashboard_activity_reply_added">Réponse ajoutée dans Mathématiques</string>
     <string name="cf_dashboard_activity_time_recent">Il y a 10 min</string>
     <string name="cf_dashboard_activity_time_today">Aujourd’hui</string>
+    <string name="cf_dashboard_recent_topic_meta">%1$s - %2$s - %3$s</string>
+    <string name="cf_dashboard_no_recent_activity">Aucune activité récente</string>
+    <string name="cf_dashboard_no_recent_activity_message">Les sujets créés apparaîtront ici.</string>
 
     <!-- Profile -->
     <string name="cf_profile_title">Mon profil</string>
@@ -102,4 +138,5 @@
     <string name="cf_profile_recent_topic_one">Préparer le contrôle de base de données</string>
     <string name="cf_profile_recent_topic_two">Ressources utiles en algorithmique</string>
     <string name="cf_profile_logout">Déconnexion</string>
+    <string name="cf_profile_logout_confirm_message">Voulez-vous vraiment vous déconnecter ?</string>
 </resources>

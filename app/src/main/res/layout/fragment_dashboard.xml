@@ -31,6 +31,7 @@
                 android:orientation="vertical">
 
                 <TextView
+                    android:id="@+id/dashboard_topics_count"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/cf_dashboard_stat_topics_count"
@@ -53,6 +54,7 @@
                 android:orientation="vertical">
 
                 <TextView
+                    android:id="@+id/dashboard_replies_count"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/cf_dashboard_stat_replies_count"
@@ -81,6 +83,7 @@
                 android:orientation="vertical">
 
                 <TextView
+                    android:id="@+id/dashboard_categories_count"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/cf_dashboard_stat_categories_count"
@@ -103,6 +106,7 @@
                 android:orientation="vertical">
 
                 <TextView
+                    android:id="@+id/dashboard_members_count"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/cf_dashboard_stat_members_count"
@@ -125,6 +129,7 @@
             android:textAppearance="@style/TextAppearance.CampusForum.Title" />
 
         <LinearLayout
+            android:id="@+id/dashboard_recent_activity_first"
             style="@style/Widget.CampusForum.Card"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -132,12 +137,14 @@
             android:orientation="vertical">
 
             <TextView
+                android:id="@+id/dashboard_recent_activity_first_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/cf_dashboard_activity_topic_created"
                 android:textAppearance="@style/TextAppearance.CampusForum.BodySmall" />
 
             <TextView
+                android:id="@+id/dashboard_recent_activity_first_meta"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/cf_spacing_1"
@@ -146,6 +153,7 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/dashboard_recent_activity_second"
             style="@style/Widget.CampusForum.Card"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -154,12 +162,14 @@
             android:orientation="vertical">
 
             <TextView
+                android:id="@+id/dashboard_recent_activity_second_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/cf_dashboard_activity_reply_added"
                 android:textAppearance="@style/TextAppearance.CampusForum.BodySmall" />
 
             <TextView
+                android:id="@+id/dashboard_recent_activity_second_meta"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/cf_spacing_1"
