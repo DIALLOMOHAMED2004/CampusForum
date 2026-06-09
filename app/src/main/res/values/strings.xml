@@ -74,14 +74,23 @@
     <!-- Create Topic -->
     <string name="cf_create_topic_title">Nouveau sujet</string>
     <string name="cf_create_topic_subtitle">Posez une question ou partagez une information académique</string>
+    <string name="cf_create_topic_title_label">Titre</string>
     <string name="cf_create_topic_title_hint">Titre du sujet</string>
+    <string name="cf_create_topic_title_counter">%1$d caractères</string>
+    <string name="cf_create_topic_title_counter_initial">0 caractères</string>
+    <string name="cf_create_topic_category_label">Catégorie</string>
+    <string name="cf_create_topic_content_label">Contenu</string>
     <string name="cf_create_topic_content_hint">Décrivez votre question ou votre information</string>
     <string name="cf_create_topic_category_placeholder">Sélectionnez une catégorie</string>
     <string name="cf_create_topic_publish">Publier</string>
     <string name="cf_create_topic_success">Sujet créé avec succès</string>
+    <string name="cf_create_topic_error_invalid_form">Corrigez les champs du formulaire.</string>
+    <string name="cf_create_topic_error_title_required">Le titre est obligatoire.</string>
     <string name="cf_create_topic_error_title">Le titre doit contenir au moins 5 caractères.</string>
+    <string name="cf_create_topic_error_content_required">Le contenu est obligatoire.</string>
     <string name="cf_create_topic_error_content">Le contenu doit contenir au moins 10 caractères.</string>
     <string name="cf_create_topic_error_category">Sélectionnez une catégorie.</string>
+    <string name="cf_create_topic_error_no_categories">Aucune catégorie active disponible.</string>
     <string name="cf_create_topic_error_session">Session utilisateur introuvable.</string>
     <string name="cf_create_topic_error_publish">Impossible de créer le sujet.</string>
 
