@@ -39,6 +39,7 @@ public class HomeFragment extends Fragment {
     private RecyclerView topicsRecyclerView;
     private View emptyStateView;
     private TopicAdapter topicAdapter;
+    private CategoryDao categoryDao;
     private TopicDao topicDao;
     private List<Category> categories = new ArrayList<>();
     private long selectedCategoryId = ALL_CATEGORIES_ID;
@@ -59,6 +60,7 @@ public class HomeFragment extends Fragment {
         categoryChipsContainer = view.findViewById(R.id.home_category_chips_container);
         topicsRecyclerView = view.findViewById(R.id.home_topics_recycler_view);
         emptyStateView = view.findViewById(R.id.home_empty_state);
+        categoryDao = new CategoryDao(requireContext());
         topicDao = new TopicDao(requireContext());
         topicAdapter = new TopicAdapter(null, this::openTopicDetail);
 
@@ -66,7 +68,7 @@ public class HomeFragment extends Fragment {
         topicsRecyclerView.setAdapter(topicAdapter);
         setupSearch();
         view.findViewById(R.id.home_create_topic_button).setOnClickListener(button ->
-                startActivity(new Intent(requireContext(), CreateTopicActivity.class)));
+                openCreateTopic());
 
         loadCategories();
         loadTopics();
@@ -82,6 +84,9 @@ public class HomeFragment extends Fragment {
 
     private void loadTopics() {
         List<Topic> topics = getFilteredTopics();
+        if (topics == null) {
+            topics = new ArrayList<>();
+        }
         topicAdapter.updateTopics(topics);
 
         boolean hasTopics = !topics.isEmpty();
@@ -124,7 +129,8 @@ public class HomeFragment extends Fragment {
     }
 
     private void loadCategories() {
-        categories = new CategoryDao(requireContext()).getActiveCategories();
+        List<Category> loadedCategories = categoryDao.getActiveCategories();
+        categories = loadedCategories == null ? new ArrayList<>() : loadedCategories;
         renderCategoryChips();
     }
 
@@ -164,8 +170,15 @@ public class HomeFragment extends Fragment {
     }
 
     private void openTopicDetail(Topic topic) {
+        if (topic == null || topic.getId() <= 0) {
+            return;
+        }
         Intent intent = new Intent(requireContext(), TopicDetailActivity.class);
         intent.putExtra(TopicDetailActivity.EXTRA_TOPIC_ID, topic.getId());
         startActivity(intent);
+    }
+
+    private void openCreateTopic() {
+        startActivity(new Intent(requireContext(), CreateTopicActivity.class));
     }
 }

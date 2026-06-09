@@ -77,12 +77,12 @@ public class TopicAdapter extends RecyclerView.Adapter<TopicAdapter.TopicViewHol
         }
 
         void bind(Topic topic, OnTopicClickListener clickListener) {
-            categoryText.setText(topic.getCategory());
-            titleText.setText(topic.getTitle());
-            previewText.setText(topic.getPreview());
+            categoryText.setText(safeText(topic.getCategory()));
+            titleText.setText(safeText(topic.getTitle()));
+            previewText.setText(safeText(topic.getPreview()));
             authorText.setText(itemView.getContext().getString(
                     R.string.cf_author_format,
-                    topic.getAuthorName()));
+                    safeText(topic.getAuthorName())));
             String replyLabel = topic.getReplyCount() > 1
                     ? itemView.getContext().getString(R.string.cf_topic_detail_replies_label)
                     : itemView.getContext().getString(R.string.cf_topic_detail_reply_label);
@@ -96,6 +96,10 @@ public class TopicAdapter extends RecyclerView.Adapter<TopicAdapter.TopicViewHol
                     clickListener.onTopicClick(topic);
                 }
             });
+        }
+
+        private String safeText(String value) {
+            return value == null ? "" : value;
         }
     }
 }

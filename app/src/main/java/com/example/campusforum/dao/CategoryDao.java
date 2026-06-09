@@ -1,5 +1,6 @@
 package com.example.campusforum.dao;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -24,6 +25,11 @@ public class CategoryDao {
     }
 
     public List<Category> getActiveCategories() {
+        ensureDefaultCategories();
+        return queryActiveCategories();
+    }
+
+    private List<Category> queryActiveCategories() {
         SQLiteDatabase db = databaseHelper.getReadableDatabase();
         String selection = DatabaseContract.Categories.COLUMN_IS_ACTIVE + " = ?";
         String[] selectionArgs = {"1"};
@@ -46,6 +52,26 @@ public class CategoryDao {
         }
 
         return categories;
+    }
+
+    private void ensureDefaultCategories() {
+        SQLiteDatabase db = databaseHelper.getWritableDatabase();
+
+        try {
+            for (String[] category : DatabaseContract.Categories.DEFAULT_CATEGORIES) {
+                ContentValues values = new ContentValues();
+                values.put(DatabaseContract.Categories.COLUMN_NAME, category[0]);
+                values.put(DatabaseContract.Categories.COLUMN_DESCRIPTION, category[1]);
+                values.put(DatabaseContract.Categories.COLUMN_IS_ACTIVE, 1);
+                db.insertWithOnConflict(
+                        DatabaseContract.Categories.TABLE_NAME,
+                        null,
+                        values,
+                        SQLiteDatabase.CONFLICT_IGNORE);
+            }
+        } catch (SQLiteException e) {
+            Log.w(TAG, "Unable to ensure default categories", e);
+        }
     }
 
     public Category getCategoryById(long id) {
