@@ -11,11 +11,28 @@
         android:orientation="vertical"
         android:padding="@dimen/cf_screen_padding">
 
-        <TextView
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/cf_dashboard_title"
-            android:textAppearance="@style/TextAppearance.CampusForum.Headline" />
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/cf_dashboard_title"
+                android:textAppearance="@style/TextAppearance.CampusForum.Headline" />
+
+            <ImageButton
+                android:id="@+id/dashboard_refresh_button"
+                android:layout_width="@dimen/cf_button_height"
+                android:layout_height="@dimen/cf_button_height"
+                android:background="@drawable/bg_chip_default"
+                android:contentDescription="@string/cf_action_refresh"
+                android:padding="@dimen/cf_spacing_3"
+                android:src="@drawable/ic_dashboard_refresh" />
+        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -98,6 +115,7 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/dashboard_members_card"
                 style="@style/Widget.CampusForum.Card"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -128,52 +146,35 @@
             android:text="@string/cf_dashboard_recent_activity"
             android:textAppearance="@style/TextAppearance.CampusForum.Title" />
 
-        <LinearLayout
-            android:id="@+id/dashboard_recent_activity_first"
-            style="@style/Widget.CampusForum.Card"
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/dashboard_recent_activities_recycler_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/cf_spacing_3"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/dashboard_recent_activity_first_title"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/cf_dashboard_activity_topic_created"
-                android:textAppearance="@style/TextAppearance.CampusForum.BodySmall" />
-
-            <TextView
-                android:id="@+id/dashboard_recent_activity_first_meta"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/cf_spacing_1"
-                android:text="@string/cf_dashboard_activity_time_recent"
-                android:textAppearance="@style/TextAppearance.CampusForum.Caption" />
-        </LinearLayout>
+            android:layout_marginBottom="@dimen/cf_spacing_6"
+            android:nestedScrollingEnabled="false" />
 
         <LinearLayout
-            android:id="@+id/dashboard_recent_activity_second"
+            android:id="@+id/dashboard_recent_activities_empty_state"
             style="@style/Widget.CampusForum.Card"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/cf_spacing_3"
             android:layout_marginBottom="@dimen/cf_spacing_6"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:visibility="gone">
 
             <TextView
-                android:id="@+id/dashboard_recent_activity_second_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/cf_dashboard_activity_reply_added"
+                android:text="@string/cf_dashboard_no_recent_activity"
                 android:textAppearance="@style/TextAppearance.CampusForum.BodySmall" />
 
             <TextView
-                android:id="@+id/dashboard_recent_activity_second_meta"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/cf_spacing_1"
-                android:text="@string/cf_dashboard_activity_time_today"
+                android:text="@string/cf_dashboard_no_recent_activity_message"
                 android:textAppearance="@style/TextAppearance.CampusForum.Caption" />
         </LinearLayout>
     </LinearLayout>
