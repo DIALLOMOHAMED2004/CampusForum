@@ -33,10 +33,22 @@ public class DashboardDao {
     }
 
     public int getActiveReplyCount() {
-        return countRows(
-                DatabaseContract.Replies.TABLE_NAME,
-                DatabaseContract.Replies.COLUMN_IS_DELETED + " = ?",
-                new String[]{"0"});
+        SQLiteDatabase db = databaseHelper.getReadableDatabase();
+        String sql = "SELECT COUNT(*) FROM " + DatabaseContract.Replies.TABLE_NAME + " r" +
+                " INNER JOIN " + DatabaseContract.Topics.TABLE_NAME + " t ON r." +
+                DatabaseContract.Replies.COLUMN_TOPIC_ID + " = t." + DatabaseContract.Topics._ID +
+                " WHERE r." + DatabaseContract.Replies.COLUMN_IS_DELETED + " = 0" +
+                " AND t." + DatabaseContract.Topics.COLUMN_IS_DELETED + " = 0";
+
+        try (Cursor cursor = db.rawQuery(sql, null)) {
+            if (cursor.moveToFirst()) {
+                return cursor.getInt(0);
+            }
+        } catch (SQLiteException e) {
+            Log.w(TAG, "Unable to count active replies", e);
+        }
+
+        return 0;
     }
 
     public int getActiveCategoryCount() {

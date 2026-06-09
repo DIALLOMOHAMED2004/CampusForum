@@ -30,6 +30,13 @@ public class TopicRepository {
         return sessionManager.getUserId() > 0;
     }
 
+    public Topic getTopicById(long topicId) {
+        if (topicId <= 0) {
+            return null;
+        }
+        return topicDao.getTopicById(topicId);
+    }
+
     public TopicValidationResult validateDraft(String title, String content, long categoryId) {
         String normalizedTitle = normalize(title);
         String normalizedContent = normalize(content);
@@ -88,6 +95,64 @@ public class TopicRepository {
         return TopicCreationResult.success(
                 context.getString(R.string.cf_create_topic_success),
                 topicId);
+    }
+
+    public TopicActionResult updateTopic(long topicId, String title, String content) {
+        Topic topic = getTopicById(topicId);
+        if (topic == null) {
+            return TopicActionResult.failure(context.getString(R.string.cf_topic_detail_error_missing));
+        }
+
+        if (!canManageTopic(topic)) {
+            return TopicActionResult.failure(context.getString(R.string.cf_topic_detail_error_forbidden));
+        }
+
+        String normalizedTitle = normalize(title);
+        String normalizedContent = normalize(content);
+        TopicValidationResult validationResult = validateDraft(
+                normalizedTitle,
+                normalizedContent,
+                topic.getCategoryId());
+        if (!validationResult.isValid()) {
+            return TopicActionResult.failure(context.getString(R.string.cf_create_topic_error_invalid_form));
+        }
+
+        boolean updated = topicDao.updateTopic(
+                topicId,
+                normalizedTitle,
+                normalizedContent,
+                topic.getCategoryId());
+        if (!updated) {
+            return TopicActionResult.failure(context.getString(R.string.cf_topic_detail_topic_error_update));
+        }
+
+        return TopicActionResult.success(context.getString(R.string.cf_topic_detail_topic_success_update));
+    }
+
+    public TopicActionResult deleteTopic(long topicId) {
+        Topic topic = getTopicById(topicId);
+        if (topic == null) {
+            return TopicActionResult.failure(context.getString(R.string.cf_topic_detail_error_missing));
+        }
+
+        if (!canManageTopic(topic)) {
+            return TopicActionResult.failure(context.getString(R.string.cf_topic_detail_error_forbidden));
+        }
+
+        boolean deleted = topicDao.softDeleteTopic(topicId);
+        if (!deleted) {
+            return TopicActionResult.failure(context.getString(R.string.cf_topic_detail_topic_error_delete));
+        }
+
+        return TopicActionResult.success(context.getString(R.string.cf_topic_detail_topic_success_delete));
+    }
+
+    public boolean canManageTopic(Topic topic) {
+        if (topic == null) {
+            return false;
+        }
+        long userId = sessionManager.getUserId();
+        return userId > 0 && (topic.getAuthorId() == userId || sessionManager.isAdmin());
     }
 
     public String getTitleErrorMessage(FieldError error) {
@@ -187,6 +252,32 @@ public class TopicRepository {
 
         public long getTopicId() {
             return topicId;
+        }
+    }
+
+    public static final class TopicActionResult {
+        private final boolean success;
+        private final String message;
+
+        private TopicActionResult(boolean success, String message) {
+            this.success = success;
+            this.message = message;
+        }
+
+        public static TopicActionResult success(String message) {
+            return new TopicActionResult(true, message);
+        }
+
+        public static TopicActionResult failure(String message) {
+            return new TopicActionResult(false, message);
+        }
+
+        public boolean isSuccess() {
+            return success;
+        }
+
+        public String getMessage() {
+            return message;
         }
     }
 }

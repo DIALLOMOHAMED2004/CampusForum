@@ -25,4 +25,31 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/cf_spacing_2"
         android:textAppearance="@style/TextAppearance.CampusForum.BodySmall" />
+
+    <LinearLayout
+        android:id="@+id/item_reply_actions"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/cf_spacing_3"
+        android:orientation="horizontal"
+        android:visibility="gone">
+
+        <Button
+            android:id="@+id/item_reply_edit_button"
+            style="@style/Widget.CampusForum.Button.Secondary"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/cf_spacing_2"
+            android:layout_weight="1"
+            android:text="@string/cf_action_edit" />
+
+        <Button
+            android:id="@+id/item_reply_delete_button"
+            style="@style/Widget.CampusForum.Button.Secondary"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/cf_spacing_2"
+            android:layout_weight="1"
+            android:text="@string/cf_action_delete" />
+    </LinearLayout>
 </LinearLayout>

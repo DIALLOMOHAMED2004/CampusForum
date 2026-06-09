@@ -3,6 +3,8 @@ package com.example.campusforum.utils;
 import android.content.Context;
 import android.content.SharedPreferences;
 
+import com.example.campusforum.database.DatabaseContract;
+
 public class SessionManager {
 
     private static final String PREF_NAME = "CampusForumSession";
@@ -47,6 +49,11 @@ public class SessionManager {
 
     public String getRole() {
         return preferences.getString(KEY_ROLE, null);
+    }
+
+    public boolean isAdmin() {
+        String role = getRole();
+        return DatabaseContract.Users.ROLE_ADMIN.equals(role);
     }
 
     public void clearSession() {
