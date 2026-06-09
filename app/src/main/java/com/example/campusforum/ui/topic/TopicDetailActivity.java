@@ -1,11 +1,13 @@
 package com.example.campusforum.ui.topic;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.InputType;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -28,6 +30,8 @@ import java.util.Locale;
 public class TopicDetailActivity extends AppCompatActivity implements ReplyAdapter.OnReplyActionListener {
 
     public static final String EXTRA_TOPIC_ID = "com.example.campusforum.EXTRA_TOPIC_ID";
+    private static final int MENU_EDIT = 1;
+    private static final int MENU_DELETE = 2;
 
     private TextView categoryText;
     private TextView titleText;
@@ -35,7 +39,7 @@ public class TopicDetailActivity extends AppCompatActivity implements ReplyAdapt
     private TextView authorText;
     private TextView createdAtText;
     private TextView replyCountText;
-    private View topicActionsContainer;
+    private Button topicActionsButton;
     private RecyclerView repliesRecyclerView;
     private View repliesEmptyState;
     private EditText replyInput;
@@ -45,6 +49,9 @@ public class TopicDetailActivity extends AppCompatActivity implements ReplyAdapt
     private ReplyAdapter replyAdapter;
     private Topic currentTopic;
     private long topicId;
+    private boolean sendingReply;
+    private boolean deletingTopic;
+    private boolean deletingReply;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,6 +65,14 @@ public class TopicDetailActivity extends AppCompatActivity implements ReplyAdapt
         loadTopic();
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (topicRepository != null && topicId > 0) {
+            loadTopic();
+        }
+    }
+
     private void bindViews() {
         categoryText = findViewById(R.id.topic_detail_category);
         titleText = findViewById(R.id.topic_detail_title);
@@ -65,7 +80,7 @@ public class TopicDetailActivity extends AppCompatActivity implements ReplyAdapt
         authorText = findViewById(R.id.topic_detail_author);
         createdAtText = findViewById(R.id.topic_detail_created_at);
         replyCountText = findViewById(R.id.topic_detail_reply_count);
-        topicActionsContainer = findViewById(R.id.topic_detail_actions);
+        topicActionsButton = findViewById(R.id.topic_detail_actions_button);
         repliesRecyclerView = findViewById(R.id.topic_detail_replies_recycler_view);
         repliesEmptyState = findViewById(R.id.topic_detail_replies_empty_state);
         replyInput = findViewById(R.id.topic_detail_reply_input);
@@ -79,8 +94,7 @@ public class TopicDetailActivity extends AppCompatActivity implements ReplyAdapt
 
     private void setupActions() {
         findViewById(R.id.topic_detail_back_button).setOnClickListener(view -> finish());
-        findViewById(R.id.topic_detail_edit_button).setOnClickListener(view -> showEditTopicDialog());
-        findViewById(R.id.topic_detail_delete_button).setOnClickListener(view -> confirmDeleteTopic());
+        topicActionsButton.setOnClickListener(view -> showTopicMenu());
         sendReplyButton.setOnClickListener(view -> sendReply());
     }
 
@@ -111,7 +125,7 @@ public class TopicDetailActivity extends AppCompatActivity implements ReplyAdapt
                 R.string.cf_topic_detail_created_at_format,
                 DateUtils.formatRelativeDate(topic.getCreatedAt())));
         updateReplyCount(topic.getReplyCount());
-        topicActionsContainer.setVisibility(topicRepository.canManageTopic(topic)
+        topicActionsButton.setVisibility(topicRepository.canManageTopic(topic)
                 ? View.VISIBLE
                 : View.GONE);
     }
@@ -130,10 +144,18 @@ public class TopicDetailActivity extends AppCompatActivity implements ReplyAdapt
     }
 
     private void sendReply() {
+        if (sendingReply) {
+            return;
+        }
+
         replyInput.setError(null);
+        sendingReply = true;
+        sendReplyButton.setEnabled(false);
         ReplyRepository.ReplyActionResult result = replyRepository.createReply(
                 topicId,
                 replyInput.getText().toString());
+        sendingReply = false;
+        sendReplyButton.setEnabled(true);
         if (result.isSuccess()) {
             replyInput.setText("");
             loadReplies();
@@ -154,51 +176,33 @@ public class TopicDetailActivity extends AppCompatActivity implements ReplyAdapt
         confirmDeleteReply(reply);
     }
 
-    private void showEditTopicDialog() {
+    private void showTopicMenu() {
         if (currentTopic == null) {
             showMissingTopicAndClose();
             return;
         }
 
-        LinearLayout form = createDialogForm();
-        EditText titleInput = createDialogInput(currentTopic.getTitle(), false);
-        EditText contentInput = createDialogInput(currentTopic.getContent(), true);
-        form.addView(titleInput);
-        form.addView(contentInput);
+        PopupMenu popupMenu = new PopupMenu(this, topicActionsButton);
+        popupMenu.getMenu().add(0, MENU_EDIT, 0, R.string.cf_action_edit);
+        popupMenu.getMenu().add(0, MENU_DELETE, 1, R.string.cf_action_delete);
+        popupMenu.setOnMenuItemClickListener(item -> {
+            if (item.getItemId() == MENU_EDIT) {
+                openEditTopic();
+                return true;
+            }
+            if (item.getItemId() == MENU_DELETE) {
+                confirmDeleteTopic();
+                return true;
+            }
+            return false;
+        });
+        popupMenu.show();
+    }
 
-        AlertDialog dialog = new AlertDialog.Builder(this)
-                .setTitle(R.string.cf_topic_detail_topic_edit_title)
-                .setView(form)
-                .setNegativeButton(R.string.cf_action_cancel, null)
-                .setPositiveButton(R.string.cf_action_save, null)
-                .create();
-
-        dialog.setOnShowListener(dialogInterface ->
-                dialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener(view -> {
-                    TopicRepository.TopicValidationResult validationResult =
-                            topicRepository.validateDraft(
-                                    titleInput.getText().toString(),
-                                    contentInput.getText().toString(),
-                                    currentTopic.getCategoryId());
-                    titleInput.setError(topicRepository.getTitleErrorMessage(
-                            validationResult.getTitleError()));
-                    contentInput.setError(topicRepository.getContentErrorMessage(
-                            validationResult.getContentError()));
-                    if (!validationResult.isValid()) {
-                        return;
-                    }
-
-                    TopicRepository.TopicActionResult result = topicRepository.updateTopic(
-                            topicId,
-                            titleInput.getText().toString(),
-                            contentInput.getText().toString());
-                    Toast.makeText(this, result.getMessage(), Toast.LENGTH_SHORT).show();
-                    if (result.isSuccess()) {
-                        dialog.dismiss();
-                        loadTopic();
-                    }
-                }));
-        dialog.show();
+    private void openEditTopic() {
+        Intent intent = new Intent(this, EditTopicActivity.class);
+        intent.putExtra(EXTRA_TOPIC_ID, topicId);
+        startActivity(intent);
     }
 
     private void confirmDeleteTopic() {
@@ -211,10 +215,17 @@ public class TopicDetailActivity extends AppCompatActivity implements ReplyAdapt
     }
 
     private void deleteTopic() {
+        if (deletingTopic) {
+            return;
+        }
+
+        deletingTopic = true;
         TopicRepository.TopicActionResult result = topicRepository.deleteTopic(topicId);
         Toast.makeText(this, result.getMessage(), Toast.LENGTH_SHORT).show();
         if (result.isSuccess()) {
             finish();
+        } else {
+            deletingTopic = false;
         }
     }
 
@@ -265,7 +276,13 @@ public class TopicDetailActivity extends AppCompatActivity implements ReplyAdapt
     }
 
     private void deleteReply(Reply reply) {
+        if (deletingReply) {
+            return;
+        }
+
+        deletingReply = true;
         ReplyRepository.ReplyActionResult result = replyRepository.deleteReply(reply.getId());
+        deletingReply = false;
         Toast.makeText(this, result.getMessage(), Toast.LENGTH_SHORT).show();
         if (result.isSuccess()) {
             loadReplies();

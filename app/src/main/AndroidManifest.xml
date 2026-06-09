@@ -15,6 +15,9 @@
             android:name=".ui.topic.TopicDetailActivity"
             android:exported="false" />
         <activity
+            android:name=".ui.topic.EditTopicActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.topic.CreateTopicActivity"
             android:exported="false" />
         <activity
