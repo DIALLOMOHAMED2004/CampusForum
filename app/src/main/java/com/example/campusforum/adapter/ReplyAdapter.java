@@ -4,6 +4,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.PopupMenu;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -17,6 +18,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ReplyAdapter extends RecyclerView.Adapter<ReplyAdapter.ReplyViewHolder> {
+
+    private static final int MENU_EDIT = 1;
+    private static final int MENU_DELETE = 2;
 
     public interface OnReplyActionListener {
         void onEditReply(Reply reply);
@@ -70,18 +74,14 @@ public class ReplyAdapter extends RecyclerView.Adapter<ReplyAdapter.ReplyViewHol
         private final TextView authorText;
         private final TextView createdAtText;
         private final TextView contentText;
-        private final View actionsContainer;
-        private final Button editButton;
-        private final Button deleteButton;
+        private final Button actionsButton;
 
         ReplyViewHolder(@NonNull View itemView) {
             super(itemView);
             authorText = itemView.findViewById(R.id.item_reply_author);
             createdAtText = itemView.findViewById(R.id.item_reply_created_at);
             contentText = itemView.findViewById(R.id.item_reply_content);
-            actionsContainer = itemView.findViewById(R.id.item_reply_actions);
-            editButton = itemView.findViewById(R.id.item_reply_edit_button);
-            deleteButton = itemView.findViewById(R.id.item_reply_delete_button);
+            actionsButton = itemView.findViewById(R.id.item_reply_actions_button);
         }
 
         void bind(Reply reply, long currentUserId, boolean currentUserAdmin,
@@ -94,17 +94,31 @@ public class ReplyAdapter extends RecyclerView.Adapter<ReplyAdapter.ReplyViewHol
 
             boolean canManageReply = currentUserId > 0 &&
                     (currentUserAdmin || reply.getAuthorId() == currentUserId);
-            actionsContainer.setVisibility(canManageReply ? View.VISIBLE : View.GONE);
-            editButton.setOnClickListener(view -> {
-                if (actionListener != null) {
+            actionsButton.setVisibility(canManageReply ? View.VISIBLE : View.GONE);
+            actionsButton.setOnClickListener(canManageReply
+                    ? view -> showReplyMenu(reply, actionListener)
+                    : null);
+        }
+
+        private void showReplyMenu(Reply reply, OnReplyActionListener actionListener) {
+            PopupMenu popupMenu = new PopupMenu(itemView.getContext(), actionsButton);
+            popupMenu.getMenu().add(0, MENU_EDIT, 0, R.string.cf_action_edit);
+            popupMenu.getMenu().add(0, MENU_DELETE, 1, R.string.cf_action_delete);
+            popupMenu.setOnMenuItemClickListener(item -> {
+                if (actionListener == null) {
+                    return true;
+                }
+                if (item.getItemId() == MENU_EDIT) {
                     actionListener.onEditReply(reply);
+                    return true;
                 }
-            });
-            deleteButton.setOnClickListener(view -> {
-                if (actionListener != null) {
+                if (item.getItemId() == MENU_DELETE) {
                     actionListener.onDeleteReply(reply);
+                    return true;
                 }
+                return false;
             });
+            popupMenu.show();
         }
     }
 }
