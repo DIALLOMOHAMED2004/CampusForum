@@ -57,6 +57,72 @@ public class TopicDao {
         return topics.isEmpty() ? null : topics.get(0);
     }
 
+    public boolean updateTopic(long topicId, String title, String content, long categoryId) {
+        SQLiteDatabase db = databaseHelper.getWritableDatabase();
+        String sql = "UPDATE " + DatabaseContract.Topics.TABLE_NAME +
+                " SET " + DatabaseContract.Topics.COLUMN_TITLE + " = ?, " +
+                DatabaseContract.Topics.COLUMN_CONTENT + " = ?, " +
+                DatabaseContract.Topics.COLUMN_CATEGORY_ID + " = ?, " +
+                DatabaseContract.Topics.COLUMN_UPDATED_AT + " = CURRENT_TIMESTAMP" +
+                " WHERE " + DatabaseContract.Topics._ID + " = ?" +
+                " AND " + DatabaseContract.Topics.COLUMN_IS_DELETED + " = 0";
+        Object[] args = {title, content, categoryId, topicId};
+
+        try {
+            db.execSQL(sql, args);
+            return getTopicById(topicId) != null;
+        } catch (SQLiteException e) {
+            Log.w(TAG, "Unable to update topic", e);
+            return false;
+        }
+    }
+
+    public boolean softDeleteTopic(long topicId) {
+        SQLiteDatabase db = databaseHelper.getWritableDatabase();
+        ContentValues topicValues = new ContentValues();
+        topicValues.put(DatabaseContract.Topics.COLUMN_IS_DELETED, 1);
+
+        String topicWhereClause = DatabaseContract.Topics._ID + " = ? AND " +
+                DatabaseContract.Topics.COLUMN_IS_DELETED + " = 0";
+        String[] topicWhereArgs = {String.valueOf(topicId)};
+
+        ContentValues replyValues = new ContentValues();
+        replyValues.put(DatabaseContract.Replies.COLUMN_IS_DELETED, 1);
+
+        String replyWhereClause = DatabaseContract.Replies.COLUMN_TOPIC_ID + " = ? AND " +
+                DatabaseContract.Replies.COLUMN_IS_DELETED + " = 0";
+        String[] replyWhereArgs = {String.valueOf(topicId)};
+
+        boolean transactionStarted = false;
+        try {
+            db.beginTransaction();
+            transactionStarted = true;
+            int deletedTopics = db.update(
+                    DatabaseContract.Topics.TABLE_NAME,
+                    topicValues,
+                    topicWhereClause,
+                    topicWhereArgs);
+            if (deletedTopics <= 0) {
+                return false;
+            }
+
+            db.update(
+                    DatabaseContract.Replies.TABLE_NAME,
+                    replyValues,
+                    replyWhereClause,
+                    replyWhereArgs);
+            db.setTransactionSuccessful();
+            return true;
+        } catch (SQLiteException e) {
+            Log.w(TAG, "Unable to delete topic", e);
+            return false;
+        } finally {
+            if (transactionStarted) {
+                db.endTransaction();
+            }
+        }
+    }
+
     public List<Topic> searchActiveTopics(String keyword) {
         if (keyword == null || keyword.trim().isEmpty()) {
             return getActiveTopics();

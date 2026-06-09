@@ -6,6 +6,8 @@
     <string name="cf_action_continue">Continuer</string>
     <string name="cf_action_cancel">Annuler</string>
     <string name="cf_action_save">Enregistrer</string>
+    <string name="cf_action_edit">Modifier</string>
+    <string name="cf_action_delete">Supprimer</string>
     <string name="cf_action_refresh">Actualiser</string>
     <string name="cf_action_search">Rechercher</string>
     <string name="cf_nav_home">Accueil</string>
@@ -101,6 +103,14 @@
     <string name="cf_topic_detail_reply_label">réponse</string>
     <string name="cf_topic_detail_replies_label">réponses</string>
     <string name="cf_topic_detail_error_missing">Sujet introuvable ou supprimé.</string>
+    <string name="cf_topic_detail_error_forbidden">Droits insuffisants pour cette action.</string>
+    <string name="cf_topic_detail_topic_edit_title">Modifier le sujet</string>
+    <string name="cf_topic_detail_topic_delete_title">Supprimer le sujet</string>
+    <string name="cf_topic_detail_topic_delete_confirm">Voulez-vous vraiment supprimer ce sujet ?</string>
+    <string name="cf_topic_detail_topic_success_update">Sujet modifié avec succès.</string>
+    <string name="cf_topic_detail_topic_success_delete">Sujet supprimé avec succès.</string>
+    <string name="cf_topic_detail_topic_error_update">Impossible de modifier le sujet.</string>
+    <string name="cf_topic_detail_topic_error_delete">Impossible de supprimer le sujet.</string>
     <string name="cf_topic_detail_replies_section_title">Réponses</string>
     <string name="cf_topic_detail_replies_empty_title">Aucune réponse pour le moment.</string>
     <string name="cf_topic_detail_reply_form_title">Ajouter une réponse</string>
@@ -109,6 +119,14 @@
     <string name="cf_topic_detail_reply_error_content">La réponse doit contenir au moins 2 caractères.</string>
     <string name="cf_topic_detail_reply_success">Réponse ajoutée avec succès</string>
     <string name="cf_topic_detail_reply_error_publish">Impossible d’ajouter la réponse.</string>
+    <string name="cf_topic_detail_reply_edit_title">Modifier la réponse</string>
+    <string name="cf_topic_detail_reply_delete_title">Supprimer la réponse</string>
+    <string name="cf_topic_detail_reply_delete_confirm">Voulez-vous vraiment supprimer cette réponse ?</string>
+    <string name="cf_topic_detail_reply_success_update">Réponse modifiée avec succès.</string>
+    <string name="cf_topic_detail_reply_success_delete">Réponse supprimée avec succès.</string>
+    <string name="cf_topic_detail_reply_error_missing">Réponse introuvable ou supprimée.</string>
+    <string name="cf_topic_detail_reply_error_update">Impossible de modifier la réponse.</string>
+    <string name="cf_topic_detail_reply_error_delete">Impossible de supprimer la réponse.</string>
 
     <!-- Dashboard -->
     <string name="cf_dashboard_title">Tableau de bord</string>
