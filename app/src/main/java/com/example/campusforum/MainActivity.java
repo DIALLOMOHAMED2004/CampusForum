@@ -10,6 +10,7 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.example.campusforum.ui.admin.AdminFragment;
 import com.example.campusforum.ui.dashboard.DashboardFragment;
 import com.example.campusforum.ui.auth.LoginActivity;
 import com.example.campusforum.ui.home.HomeFragment;
@@ -22,7 +23,8 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (!new SessionManager(this).isLoggedIn()) {
+        SessionManager sessionManager = new SessionManager(this);
+        if (!sessionManager.isLoggedIn()) {
             Intent intent = new Intent(this, LoginActivity.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             startActivity(intent);
@@ -39,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         BottomNavigationView bottomNavigationView = findViewById(R.id.main_bottom_navigation);
+        bottomNavigationView.getMenu().findItem(R.id.nav_admin).setVisible(sessionManager.isAdmin());
         bottomNavigationView.setOnItemSelectedListener(item -> {
             int itemId = item.getItemId();
             if (itemId == R.id.nav_dashboard) {
@@ -46,6 +49,12 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             } else if (itemId == R.id.nav_profile) {
                 showFragment(new ProfileFragment());
+                return true;
+            } else if (itemId == R.id.nav_admin) {
+                if (!sessionManager.isAdmin()) {
+                    return false;
+                }
+                showFragment(new AdminFragment());
                 return true;
             }
 

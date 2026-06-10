@@ -13,6 +13,7 @@
     <string name="cf_action_refresh">Actualiser</string>
     <string name="cf_action_search">Rechercher</string>
     <string name="cf_nav_home">Accueil</string>
+    <string name="cf_nav_admin">Admin</string>
     <string name="cf_label_email">Adresse e-mail</string>
     <string name="cf_label_password">Mot de passe</string>
     <string name="cf_label_password_confirm">Confirmer le mot de passe</string>
@@ -158,6 +159,27 @@
     <string name="cf_dashboard_recent_topic_meta">%1$s - %2$s - %3$s</string>
     <string name="cf_dashboard_no_recent_activity">Aucune activité récente</string>
     <string name="cf_dashboard_no_recent_activity_message">Les sujets créés apparaîtront ici.</string>
+
+    <!-- Admin -->
+    <string name="cf_admin_title">Administration</string>
+    <string name="cf_admin_subtitle">Gérez les catégories disponibles dans le forum.</string>
+    <string name="cf_admin_categories_section">Gestion des catégories</string>
+    <string name="cf_admin_category_name_hint">Nom de la catégorie</string>
+    <string name="cf_admin_category_description_hint">Description optionnelle</string>
+    <string name="cf_admin_category_add">Ajouter</string>
+    <string name="cf_admin_active_categories">Catégories actives</string>
+    <string name="cf_admin_categories_empty_title">Aucune catégorie active</string>
+    <string name="cf_admin_categories_empty_message">Les catégories ajoutées apparaîtront ici.</string>
+    <string name="cf_admin_category_delete_title">Supprimer la catégorie</string>
+    <string name="cf_admin_category_delete_confirm">Voulez-vous vraiment supprimer la catégorie %1$s ?</string>
+    <string name="cf_admin_success_category_added">Catégorie ajoutée.</string>
+    <string name="cf_admin_success_category_deleted">Catégorie supprimée.</string>
+    <string name="cf_admin_error_category_add">Impossible d’ajouter la catégorie.</string>
+    <string name="cf_admin_error_category_delete">Impossible de supprimer la catégorie.</string>
+    <string name="cf_admin_error_category_name_required">Le nom de la catégorie est obligatoire.</string>
+    <string name="cf_admin_error_category_name_length">Le nom de la catégorie ne doit pas dépasser 40 caractères.</string>
+    <string name="cf_admin_error_category_duplicate">Cette catégorie existe déjà.</string>
+    <string name="cf_admin_error_access_required">Accès administrateur requis.</string>
 
     <!-- Profile -->
     <string name="cf_profile_title">Mon profil</string>

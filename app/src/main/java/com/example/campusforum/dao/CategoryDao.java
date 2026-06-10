@@ -29,6 +29,64 @@ public class CategoryDao {
         return queryActiveCategories();
     }
 
+    public long createCategory(String name, String description) {
+        SQLiteDatabase db = databaseHelper.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(DatabaseContract.Categories.COLUMN_NAME, name);
+        values.put(DatabaseContract.Categories.COLUMN_DESCRIPTION, description);
+        values.put(DatabaseContract.Categories.COLUMN_IS_ACTIVE, 1);
+
+        try {
+            return db.insertOrThrow(DatabaseContract.Categories.TABLE_NAME, null, values);
+        } catch (SQLiteException e) {
+            Log.w(TAG, "Unable to create category", e);
+            return -1;
+        }
+    }
+
+    public boolean categoryNameExists(String name) {
+        SQLiteDatabase db = databaseHelper.getReadableDatabase();
+        String[] columns = {DatabaseContract.Categories._ID};
+        String selection = "LOWER(" + DatabaseContract.Categories.COLUMN_NAME + ") = LOWER(?)";
+        String[] selectionArgs = {name};
+
+        try (Cursor cursor = db.query(
+                DatabaseContract.Categories.TABLE_NAME,
+                columns,
+                selection,
+                selectionArgs,
+                null,
+                null,
+                null,
+                "1")) {
+            return cursor.moveToFirst();
+        } catch (SQLiteException e) {
+            Log.w(TAG, "Unable to check category name", e);
+            return false;
+        }
+    }
+
+    public boolean softDeleteCategory(long categoryId) {
+        SQLiteDatabase db = databaseHelper.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(DatabaseContract.Categories.COLUMN_IS_ACTIVE, 0);
+
+        String whereClause = DatabaseContract.Categories._ID + " = ? AND " +
+                DatabaseContract.Categories.COLUMN_IS_ACTIVE + " = ?";
+        String[] whereArgs = {String.valueOf(categoryId), "1"};
+
+        try {
+            return db.update(
+                    DatabaseContract.Categories.TABLE_NAME,
+                    values,
+                    whereClause,
+                    whereArgs) > 0;
+        } catch (SQLiteException e) {
+            Log.w(TAG, "Unable to delete category", e);
+            return false;
+        }
+    }
+
     private List<Category> queryActiveCategories() {
         SQLiteDatabase db = databaseHelper.getReadableDatabase();
         String selection = DatabaseContract.Categories.COLUMN_IS_ACTIVE + " = ?";
