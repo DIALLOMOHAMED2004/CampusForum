@@ -162,6 +162,11 @@
     <string name="cf_profile_role_user">USER</string>
     <string name="cf_profile_about">À propos</string>
     <string name="cf_profile_edit_bio">Modifier</string>
+    <string name="cf_profile_edit_bio_title">Modifier la bio</string>
+    <string name="cf_profile_bio_hint">Présentez-vous en quelques mots</string>
+    <string name="cf_profile_bio_error_length">La bio ne doit pas dépasser 200 caractères.</string>
+    <string name="cf_profile_bio_update_success">Bio mise à jour.</string>
+    <string name="cf_profile_bio_update_error">Impossible de mettre à jour la bio.</string>
     <string name="cf_profile_empty_bio">Ajoutez une bio pour vous présenter</string>
     <string name="cf_profile_demo_bio">Étudiante active, intéressée par les bases de données et les groupes de révision.</string>
     <string name="cf_profile_my_topics">Mes sujets</string>
@@ -169,6 +174,8 @@
     <string name="cf_profile_topics_count">4</string>
     <string name="cf_profile_replies_count">9</string>
     <string name="cf_profile_recent_topics">Mes sujets récents</string>
+    <string name="cf_profile_recent_topics_empty_title">Aucun sujet publié</string>
+    <string name="cf_profile_recent_topics_empty_message">Vos sujets récents apparaîtront ici.</string>
     <string name="cf_profile_recent_topic_one">Préparer le contrôle de base de données</string>
     <string name="cf_profile_recent_topic_two">Ressources utiles en algorithmique</string>
     <string name="cf_profile_logout">Déconnexion</string>

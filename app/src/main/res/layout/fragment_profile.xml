@@ -71,11 +71,30 @@
             android:layout_marginTop="@dimen/cf_spacing_4"
             android:orientation="vertical">
 
-            <TextView
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/cf_profile_about"
-                android:textAppearance="@style/TextAppearance.CampusForum.Title" />
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/cf_profile_about"
+                    android:textAppearance="@style/TextAppearance.CampusForum.Title" />
+
+                <TextView
+                    android:id="@+id/profile_edit_bio_button"
+                    style="@style/Widget.CampusForum.TextLink"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:foreground="?attr/selectableItemBackground"
+                    android:padding="@dimen/cf_spacing_2"
+                    android:text="@string/cf_profile_edit_bio" />
+            </LinearLayout>
 
             <TextView
                 android:id="@+id/profile_bio_text"
@@ -145,10 +164,17 @@
             android:layout_marginTop="@dimen/cf_section_spacing"
             android:text="@string/cf_profile_recent_topics"
             android:textAppearance="@style/TextAppearance.CampusForum.Title"
-            android:visibility="gone" />
+            android:visibility="visible" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/profile_recent_topics_recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/cf_spacing_3"
+            android:nestedScrollingEnabled="false" />
 
         <LinearLayout
-            android:id="@+id/profile_recent_topic_one_card"
+            android:id="@+id/profile_recent_topics_empty_state"
             style="@style/Widget.CampusForum.Card"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -159,38 +185,15 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/cf_profile_recent_topic_one"
-                android:textAppearance="@style/TextAppearance.CampusForum.BodySmall" />
+                android:text="@string/cf_profile_recent_topics_empty_title"
+                android:textAppearance="@style/TextAppearance.CampusForum.Title" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/cf_spacing_1"
-                android:text="@string/cf_demo_topic_meta_today"
-                android:textAppearance="@style/TextAppearance.CampusForum.Caption" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/profile_recent_topic_two_card"
-            style="@style/Widget.CampusForum.Card"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/cf_spacing_3"
-            android:orientation="vertical"
-            android:visibility="gone">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/cf_profile_recent_topic_two"
+                android:text="@string/cf_profile_recent_topics_empty_message"
                 android:textAppearance="@style/TextAppearance.CampusForum.BodySmall" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/cf_spacing_1"
-                android:text="@string/cf_demo_topic_meta_yesterday"
-                android:textAppearance="@style/TextAppearance.CampusForum.Caption" />
         </LinearLayout>
 
         <Button
