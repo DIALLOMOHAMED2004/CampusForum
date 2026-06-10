@@ -68,6 +68,11 @@
     <string name="cf_home_create_topic">Créer un sujet</string>
     <string name="cf_home_empty_title">Aucun sujet</string>
     <string name="cf_home_empty_message">Soyez le premier à créer un sujet</string>
+    <string name="cf_home_empty_search_title">Aucun résultat</string>
+    <string name="cf_home_empty_search_message">Aucun sujet ne correspond à votre recherche</string>
+    <string name="cf_home_empty_category_title">Aucun sujet dans cette catégorie</string>
+    <string name="cf_home_empty_category_message">Les sujets de cette catégorie apparaîtront ici</string>
+    <string name="cf_home_empty_search_category_message">Aucun sujet de cette catégorie ne correspond à votre recherche</string>
     <string name="cf_demo_topic_group_title">Comment organiser un groupe de révision ?</string>
     <string name="cf_demo_topic_group_body">Proposition de créneau et méthode de travail pour préparer les examens ensemble.</string>
     <string name="cf_demo_topic_database_title">Besoin aide sur les jointures SQL</string>

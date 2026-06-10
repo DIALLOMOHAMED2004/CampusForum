@@ -50,16 +50,7 @@
                     android:id="@+id/home_category_chips_container"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:id="@+id/home_filter_all_chip"
-                        style="@style/Widget.CampusForum.Chip.Selected"
-                        android:layout_width="wrap_content"
-                        android:layout_height="@dimen/cf_chip_height"
-                        android:gravity="center"
-                        android:text="@string/cf_home_filter_all" />
-                </LinearLayout>
+                    android:orientation="horizontal" />
             </HorizontalScrollView>
 
             <androidx.recyclerview.widget.RecyclerView
@@ -79,12 +70,14 @@
                 android:visibility="gone">
 
                 <TextView
+                    android:id="@+id/home_empty_title"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/cf_home_empty_title"
                     android:textAppearance="@style/TextAppearance.CampusForum.Title" />
 
                 <TextView
+                    android:id="@+id/home_empty_message"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/cf_spacing_2"

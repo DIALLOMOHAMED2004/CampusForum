@@ -38,6 +38,8 @@ public class HomeFragment extends Fragment {
     private LinearLayout categoryChipsContainer;
     private RecyclerView topicsRecyclerView;
     private View emptyStateView;
+    private TextView emptyTitleText;
+    private TextView emptyMessageText;
     private TopicAdapter topicAdapter;
     private CategoryDao categoryDao;
     private TopicDao topicDao;
@@ -60,6 +62,8 @@ public class HomeFragment extends Fragment {
         categoryChipsContainer = view.findViewById(R.id.home_category_chips_container);
         topicsRecyclerView = view.findViewById(R.id.home_topics_recycler_view);
         emptyStateView = view.findViewById(R.id.home_empty_state);
+        emptyTitleText = view.findViewById(R.id.home_empty_title);
+        emptyMessageText = view.findViewById(R.id.home_empty_message);
         categoryDao = new CategoryDao(requireContext());
         topicDao = new TopicDao(requireContext());
         topicAdapter = new TopicAdapter(null, this::openTopicDetail);
@@ -92,6 +96,9 @@ public class HomeFragment extends Fragment {
         boolean hasTopics = !topics.isEmpty();
         topicsRecyclerView.setVisibility(hasTopics ? View.VISIBLE : View.GONE);
         emptyStateView.setVisibility(hasTopics ? View.GONE : View.VISIBLE);
+        if (!hasTopics) {
+            updateEmptyStateText();
+        }
     }
 
     private List<Topic> getFilteredTopics() {
@@ -108,6 +115,30 @@ public class HomeFragment extends Fragment {
             return topicDao.getActiveTopicsByCategory(selectedCategoryId);
         }
         return topicDao.getActiveTopics();
+    }
+
+    private void updateEmptyStateText() {
+        boolean hasSearch = !currentSearchQuery.trim().isEmpty();
+        boolean hasCategoryFilter = selectedCategoryId != ALL_CATEGORIES_ID;
+
+        if (hasSearch && hasCategoryFilter) {
+            emptyTitleText.setText(R.string.cf_home_empty_search_title);
+            emptyMessageText.setText(R.string.cf_home_empty_search_category_message);
+            return;
+        }
+        if (hasSearch) {
+            emptyTitleText.setText(R.string.cf_home_empty_search_title);
+            emptyMessageText.setText(R.string.cf_home_empty_search_message);
+            return;
+        }
+        if (hasCategoryFilter) {
+            emptyTitleText.setText(R.string.cf_home_empty_category_title);
+            emptyMessageText.setText(R.string.cf_home_empty_category_message);
+            return;
+        }
+
+        emptyTitleText.setText(R.string.cf_home_empty_title);
+        emptyMessageText.setText(R.string.cf_home_empty_message);
     }
 
     private void setupSearch() {
