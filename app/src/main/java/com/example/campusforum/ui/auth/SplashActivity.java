@@ -21,7 +21,7 @@ public class SplashActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
 
-        DatabaseHelper.getInstance(this).getReadableDatabase();
+        DatabaseHelper.getInstance(this).ensureDefaultAdmin();
 
         new Handler(Looper.getMainLooper()).postDelayed(this::openNextScreen, SPLASH_DELAY_MS);
     }

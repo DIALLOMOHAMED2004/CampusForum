@@ -2,10 +2,22 @@ package com.example.campusforum.database;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
+
+import com.example.campusforum.utils.PasswordUtils;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
+
+    private static final String TAG = "DatabaseHelper";
+    private static final String DEFAULT_ADMIN_USERNAME = "Administrateur";
+    private static final String DEFAULT_ADMIN_EMAIL = "admin@campusforum.local";
+    private static final String DEFAULT_ADMIN_PASSWORD = "Admin123";
+    private static final String DEFAULT_ADMIN_SECURITY_QUESTION = "Compte administrateur par défaut";
+    private static final String DEFAULT_ADMIN_SECURITY_ANSWER = "admin";
 
     private static DatabaseHelper instance;
 
@@ -35,6 +47,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         createIndexes(db);
         insertDefaultCategories(db);
+        insertDefaultAdmin(db);
     }
 
     @Override
@@ -63,6 +76,55 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             values.put(DatabaseContract.Categories.COLUMN_DESCRIPTION, category[1]);
             values.put(DatabaseContract.Categories.COLUMN_IS_ACTIVE, 1);
             db.insert(DatabaseContract.Categories.TABLE_NAME, null, values);
+        }
+    }
+
+    public void ensureDefaultAdmin() {
+        SQLiteDatabase db = getWritableDatabase();
+        try {
+            insertDefaultAdmin(db);
+        } catch (SQLiteException e) {
+            Log.w(TAG, "Unable to ensure default admin", e);
+        }
+    }
+
+    private void insertDefaultAdmin(SQLiteDatabase db) {
+        if (defaultAdminExists(db)) {
+            return;
+        }
+
+        ContentValues values = new ContentValues();
+        values.put(DatabaseContract.Users.COLUMN_USERNAME, DEFAULT_ADMIN_USERNAME);
+        values.put(DatabaseContract.Users.COLUMN_EMAIL, DEFAULT_ADMIN_EMAIL);
+        values.put(DatabaseContract.Users.COLUMN_PASSWORD_HASH,
+                PasswordUtils.hashPassword(DEFAULT_ADMIN_PASSWORD));
+        values.put(DatabaseContract.Users.COLUMN_SECURITY_QUESTION, DEFAULT_ADMIN_SECURITY_QUESTION);
+        values.put(DatabaseContract.Users.COLUMN_SECURITY_ANSWER_HASH,
+                PasswordUtils.hashSecurityAnswer(DEFAULT_ADMIN_SECURITY_ANSWER));
+        values.put(DatabaseContract.Users.COLUMN_ROLE, DatabaseContract.Users.ROLE_ADMIN);
+        values.put(DatabaseContract.Users.COLUMN_IS_ACTIVE, 1);
+        db.insertWithOnConflict(
+                DatabaseContract.Users.TABLE_NAME,
+                null,
+                values,
+                SQLiteDatabase.CONFLICT_IGNORE);
+    }
+
+    private boolean defaultAdminExists(SQLiteDatabase db) {
+        String[] columns = {DatabaseContract.Users._ID};
+        String selection = DatabaseContract.Users.COLUMN_EMAIL + " = ?";
+        String[] selectionArgs = {DEFAULT_ADMIN_EMAIL};
+
+        try (Cursor cursor = db.query(
+                DatabaseContract.Users.TABLE_NAME,
+                columns,
+                selection,
+                selectionArgs,
+                null,
+                null,
+                null,
+                "1")) {
+            return cursor.moveToFirst();
         }
     }
 }

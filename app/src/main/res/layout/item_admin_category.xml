@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/Widget.CampusForum.Card"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="@dimen/cf_spacing_3"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/item_admin_category_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAppearance="@style/TextAppearance.CampusForum.Title" />
+
+    <TextView
+        android:id="@+id/item_admin_category_description"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/cf_spacing_1"
+        android:textAppearance="@style/TextAppearance.CampusForum.BodySmall" />
+
+    <Button
+        android:id="@+id/item_admin_category_delete_button"
+        style="@style/Widget.CampusForum.Button.Secondary"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        android:layout_marginTop="@dimen/cf_spacing_3"
+        android:text="@string/cf_action_delete" />
+</LinearLayout>

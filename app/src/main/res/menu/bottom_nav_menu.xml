@@ -14,4 +14,9 @@
         android:id="@+id/nav_profile"
         android:icon="@drawable/ic_nav_profile"
         android:title="@string/cf_profile_title" />
+
+    <item
+        android:id="@+id/nav_admin"
+        android:icon="@drawable/ic_nav_admin"
+        android:title="@string/cf_nav_admin" />
 </menu>
