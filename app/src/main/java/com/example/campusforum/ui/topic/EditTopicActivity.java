@@ -47,7 +47,7 @@ public class EditTopicActivity extends AppCompatActivity {
             return;
         }
 
-        if (!topicRepository.canManageTopic(topic)) {
+        if (!topicRepository.canEditTopic(topic)) {
             Toast.makeText(this, R.string.cf_topic_detail_error_forbidden, Toast.LENGTH_SHORT).show();
             finish();
             return;

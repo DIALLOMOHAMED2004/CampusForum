@@ -103,7 +103,7 @@ public class TopicRepository {
             return TopicActionResult.failure(context.getString(R.string.cf_topic_detail_error_missing));
         }
 
-        if (!canManageTopic(topic)) {
+        if (!canEditTopic(topic)) {
             return TopicActionResult.failure(context.getString(R.string.cf_topic_detail_error_forbidden));
         }
 
@@ -135,7 +135,7 @@ public class TopicRepository {
             return TopicActionResult.failure(context.getString(R.string.cf_topic_detail_error_missing));
         }
 
-        if (!canManageTopic(topic)) {
+        if (!canDeleteTopic(topic)) {
             return TopicActionResult.failure(context.getString(R.string.cf_topic_detail_error_forbidden));
         }
 
@@ -148,6 +148,18 @@ public class TopicRepository {
     }
 
     public boolean canManageTopic(Topic topic) {
+        return canEditTopic(topic) || canDeleteTopic(topic);
+    }
+
+    public boolean canEditTopic(Topic topic) {
+        if (topic == null) {
+            return false;
+        }
+        long userId = sessionManager.getUserId();
+        return userId > 0 && topic.getAuthorId() == userId;
+    }
+
+    public boolean canDeleteTopic(Topic topic) {
         if (topic == null) {
             return false;
         }

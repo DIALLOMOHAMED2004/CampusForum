@@ -92,18 +92,24 @@ public class ReplyAdapter extends RecyclerView.Adapter<ReplyAdapter.ReplyViewHol
             createdAtText.setText(DateUtils.formatRelativeDate(reply.getCreatedAt()));
             contentText.setText(reply.getContent());
 
-            boolean canManageReply = currentUserId > 0 &&
-                    (currentUserAdmin || reply.getAuthorId() == currentUserId);
+            boolean canEditReply = currentUserId > 0 && reply.getAuthorId() == currentUserId;
+            boolean canDeleteReply = canEditReply || (currentUserId > 0 && currentUserAdmin);
+            boolean canManageReply = canEditReply || canDeleteReply;
             actionsButton.setVisibility(canManageReply ? View.VISIBLE : View.GONE);
             actionsButton.setOnClickListener(canManageReply
-                    ? view -> showReplyMenu(reply, actionListener)
+                    ? view -> showReplyMenu(reply, canEditReply, canDeleteReply, actionListener)
                     : null);
         }
 
-        private void showReplyMenu(Reply reply, OnReplyActionListener actionListener) {
+        private void showReplyMenu(Reply reply, boolean canEditReply, boolean canDeleteReply,
+                OnReplyActionListener actionListener) {
             PopupMenu popupMenu = new PopupMenu(itemView.getContext(), actionsButton);
-            popupMenu.getMenu().add(0, MENU_EDIT, 0, R.string.cf_action_edit);
-            popupMenu.getMenu().add(0, MENU_DELETE, 1, R.string.cf_action_delete);
+            if (canEditReply) {
+                popupMenu.getMenu().add(0, MENU_EDIT, 0, R.string.cf_action_edit);
+            }
+            if (canDeleteReply) {
+                popupMenu.getMenu().add(0, MENU_DELETE, 1, R.string.cf_action_delete);
+            }
             popupMenu.setOnMenuItemClickListener(item -> {
                 if (actionListener == null) {
                     return true;

@@ -168,11 +168,19 @@ public class TopicDetailActivity extends AppCompatActivity implements ReplyAdapt
 
     @Override
     public void onEditReply(Reply reply) {
+        if (!replyRepository.canEditReply(reply)) {
+            Toast.makeText(this, R.string.cf_topic_detail_error_forbidden, Toast.LENGTH_SHORT).show();
+            return;
+        }
         showEditReplyDialog(reply);
     }
 
     @Override
     public void onDeleteReply(Reply reply) {
+        if (!replyRepository.canDeleteReply(reply)) {
+            Toast.makeText(this, R.string.cf_topic_detail_error_forbidden, Toast.LENGTH_SHORT).show();
+            return;
+        }
         confirmDeleteReply(reply);
     }
 
@@ -183,8 +191,12 @@ public class TopicDetailActivity extends AppCompatActivity implements ReplyAdapt
         }
 
         PopupMenu popupMenu = new PopupMenu(this, topicActionsButton);
-        popupMenu.getMenu().add(0, MENU_EDIT, 0, R.string.cf_action_edit);
-        popupMenu.getMenu().add(0, MENU_DELETE, 1, R.string.cf_action_delete);
+        if (topicRepository.canEditTopic(currentTopic)) {
+            popupMenu.getMenu().add(0, MENU_EDIT, 0, R.string.cf_action_edit);
+        }
+        if (topicRepository.canDeleteTopic(currentTopic)) {
+            popupMenu.getMenu().add(0, MENU_DELETE, 1, R.string.cf_action_delete);
+        }
         popupMenu.setOnMenuItemClickListener(item -> {
             if (item.getItemId() == MENU_EDIT) {
                 openEditTopic();

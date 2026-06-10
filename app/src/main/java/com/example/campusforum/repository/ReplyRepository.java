@@ -74,7 +74,7 @@ public class ReplyRepository {
             return ReplyActionResult.failure(context.getString(R.string.cf_topic_detail_reply_error_missing));
         }
 
-        if (!canManageReply(reply)) {
+        if (!canEditReply(reply)) {
             return ReplyActionResult.failure(context.getString(R.string.cf_topic_detail_error_forbidden));
         }
 
@@ -92,7 +92,7 @@ public class ReplyRepository {
             return ReplyActionResult.failure(context.getString(R.string.cf_topic_detail_reply_error_missing));
         }
 
-        if (!canManageReply(reply)) {
+        if (!canDeleteReply(reply)) {
             return ReplyActionResult.failure(context.getString(R.string.cf_topic_detail_error_forbidden));
         }
 
@@ -105,6 +105,18 @@ public class ReplyRepository {
     }
 
     public boolean canManageReply(Reply reply) {
+        return canEditReply(reply) || canDeleteReply(reply);
+    }
+
+    public boolean canEditReply(Reply reply) {
+        if (reply == null) {
+            return false;
+        }
+        long userId = sessionManager.getUserId();
+        return userId > 0 && reply.getAuthorId() == userId;
+    }
+
+    public boolean canDeleteReply(Reply reply) {
         if (reply == null) {
             return false;
         }
