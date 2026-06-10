@@ -50,6 +50,16 @@ public class TopicDao {
         return getTopics(null, null);
     }
 
+    public List<Topic> getRecentActiveTopicsByAuthor(long authorId, int limit) {
+        if (authorId <= 0 || limit <= 0) {
+            return new ArrayList<>();
+        }
+
+        String selection = "t." + DatabaseContract.Topics.COLUMN_AUTHOR_ID + " = ?";
+        String[] selectionArgs = {String.valueOf(authorId)};
+        return getTopics(selection, selectionArgs, limit);
+    }
+
     public Topic getTopicById(long topicId) {
         String selection = "t." + DatabaseContract.Topics._ID + " = ?";
         String[] selectionArgs = {String.valueOf(topicId)};
@@ -173,10 +183,14 @@ public class TopicDao {
     }
 
     private List<Topic> getTopics(String extraSelection, String[] extraSelectionArgs) {
+        return getTopics(extraSelection, extraSelectionArgs, -1);
+    }
+
+    private List<Topic> getTopics(String extraSelection, String[] extraSelectionArgs, int limit) {
         SQLiteDatabase db = databaseHelper.getReadableDatabase();
         List<Topic> topics = new ArrayList<>();
 
-        String sql = buildTopicsQuery(extraSelection);
+        String sql = buildTopicsQuery(extraSelection, limit);
         String[] args = extraSelectionArgs == null ? new String[0] : extraSelectionArgs;
 
         try (Cursor cursor = db.rawQuery(sql, args)) {
@@ -191,6 +205,10 @@ public class TopicDao {
     }
 
     private String buildTopicsQuery(String extraSelection) {
+        return buildTopicsQuery(extraSelection, -1);
+    }
+
+    private String buildTopicsQuery(String extraSelection, int limit) {
         String topicsTable = DatabaseContract.Topics.TABLE_NAME;
         String usersTable = DatabaseContract.Users.TABLE_NAME;
         String categoriesTable = DatabaseContract.Categories.TABLE_NAME;
@@ -231,6 +249,10 @@ public class TopicDao {
 
         query.append(" GROUP BY t.").append(DatabaseContract.Topics._ID)
                 .append(" ORDER BY t.").append(DatabaseContract.Topics.COLUMN_CREATED_AT).append(" DESC");
+
+        if (limit > 0) {
+            query.append(" LIMIT ").append(limit);
+        }
 
         return query.toString();
     }
