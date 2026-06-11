@@ -5,22 +5,50 @@
     android:layout_height="wrap_content"
     android:layout_marginBottom="@dimen/cf_spacing_3"
     android:foreground="?attr/selectableItemBackground"
-    android:orientation="vertical">
+    android:gravity="center_vertical"
+    android:orientation="horizontal">
 
-    <TextView
-        android:id="@+id/item_dashboard_recent_topic_title"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ellipsize="end"
-        android:maxLines="2"
-        android:textAppearance="@style/TextAppearance.CampusForum.BodySmall" />
+    <ImageView
+        android:layout_width="@dimen/cf_chip_height"
+        android:layout_height="@dimen/cf_chip_height"
+        android:background="@drawable/bg_chip_default"
+        android:contentDescription="@string/cf_dashboard_active_topics"
+        android:padding="@dimen/cf_spacing_2"
+        android:src="@drawable/ic_dashboard_topics"
+        android:tint="@color/cf_primary" />
 
-    <TextView
-        android:id="@+id/item_dashboard_recent_topic_meta"
-        android:layout_width="match_parent"
+    <LinearLayout
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/cf_spacing_1"
-        android:ellipsize="end"
-        android:maxLines="2"
-        android:textAppearance="@style/TextAppearance.CampusForum.Caption" />
+        android:layout_marginStart="@dimen/cf_spacing_3"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/item_dashboard_recent_topic_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:textAppearance="@style/TextAppearance.CampusForum.BodySmall" />
+
+        <TextView
+            android:id="@+id/item_dashboard_recent_topic_category"
+            style="@style/Widget.CampusForum.Chip.Default"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/cf_chip_height"
+            android:layout_marginTop="@dimen/cf_spacing_2"
+            android:ellipsize="end"
+            android:gravity="center"
+            android:maxLines="1" />
+
+        <TextView
+            android:id="@+id/item_dashboard_recent_topic_meta"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/cf_spacing_2"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:textAppearance="@style/TextAppearance.CampusForum.Caption" />
+    </LinearLayout>
 </LinearLayout>

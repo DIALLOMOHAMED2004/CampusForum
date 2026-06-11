@@ -1,31 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- CampusForum spacing follows the Paraflow 4dp scale. -->
+    <!-- Échelle d'espacement 4dp (conservée + valeurs hautes ajoutées) -->
     <dimen name="cf_spacing_1">4dp</dimen>
     <dimen name="cf_spacing_2">8dp</dimen>
     <dimen name="cf_spacing_3">12dp</dimen>
     <dimen name="cf_spacing_4">16dp</dimen>
     <dimen name="cf_spacing_5">20dp</dimen>
     <dimen name="cf_spacing_6">24dp</dimen>
+    <dimen name="cf_spacing_7">32dp</dimen>
+    <dimen name="cf_spacing_8">40dp</dimen>
 
-    <dimen name="cf_screen_padding">16dp</dimen>
-    <dimen name="cf_section_spacing">20dp</dimen>
+    <dimen name="cf_screen_padding">20dp</dimen>
+    <dimen name="cf_section_spacing">24dp</dimen>
 
-    <!-- Soft but restrained radii for an accessible academic interface. -->
-    <dimen name="cf_radius_small">6dp</dimen>
-    <dimen name="cf_radius_medium">8dp</dimen>
+    <!-- Rayons plus généreux = rendu plus doux et premium -->
+    <dimen name="cf_radius_small">10dp</dimen>
+    <dimen name="cf_radius_medium">16dp</dimen>
+    <dimen name="cf_radius_large">22dp</dimen>
     <dimen name="cf_radius_full">999dp</dimen>
     <dimen name="cf_stroke_width">1dp</dimen>
+    <dimen name="cf_stroke_width_thick">1.5dp</dimen>
 
-    <!-- Type scale derived from the Paraflow mobile style guide. -->
+    <!-- Élévations (ombres réelles via cardElevation / elevation) -->
+    <dimen name="cf_elevation_card">2dp</dimen>
+    <dimen name="cf_elevation_card_raised">6dp</dimen>
+    <dimen name="cf_elevation_fab">10dp</dimen>
+    <dimen name="cf_elevation_header">4dp</dimen>
+
+    <!-- Échelle typographique (légèrement agrandie en haut pour l'impact) -->
     <dimen name="cf_text_caption">12sp</dimen>
     <dimen name="cf_text_body_small">14sp</dimen>
     <dimen name="cf_text_body">16sp</dimen>
     <dimen name="cf_text_title">20sp</dimen>
-    <dimen name="cf_text_headline">24sp</dimen>
+    <dimen name="cf_text_headline">26sp</dimen>
+    <dimen name="cf_text_display">32sp</dimen>
 
-    <dimen name="cf_card_padding">16dp</dimen>
-    <dimen name="cf_button_height">48dp</dimen>
-    <dimen name="cf_input_height">48dp</dimen>
-    <dimen name="cf_chip_height">36dp</dimen>
+    <dimen name="cf_card_padding">18dp</dimen>
+    <dimen name="cf_card_padding_large">22dp</dimen>
+    <dimen name="cf_button_height">52dp</dimen>
+    <dimen name="cf_input_height">52dp</dimen>
+    <dimen name="cf_chip_height">34dp</dimen>
+    <dimen name="cf_brand_mark_size">64dp</dimen>
+    <dimen name="cf_brand_mark_size_large">88dp</dimen>
+    <dimen name="cf_avatar_size">80dp</dimen>
+    <dimen name="cf_empty_icon_size">56dp</dimen>
+    <dimen name="cf_empty_icon_bg_size">96dp</dimen>
+    <dimen name="cf_stat_icon_size">44dp</dimen>
+    <dimen name="cf_bottom_action_space">96dp</dimen>
+    <dimen name="cf_multiline_input_medium">120dp</dimen>
+    <dimen name="cf_multiline_input_large">160dp</dimen>
+    <dimen name="cf_admin_description_height">96dp</dimen>
+    <dimen name="cf_header_height">120dp</dimen>
+    <dimen name="cf_accent_bar_width">4dp</dimen>
 </resources>

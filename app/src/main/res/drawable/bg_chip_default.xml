@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<shape xmlns:android="http://schemas.android.com/apk/res/android">
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
     <solid android:color="@color/cf_surface_secondary" />
+    <stroke android:width="@dimen/cf_stroke_width" android:color="@color/cf_divider_strong" />
     <corners android:radius="@dimen/cf_radius_full" />
 </shape>

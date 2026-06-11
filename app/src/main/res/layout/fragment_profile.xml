@@ -3,47 +3,55 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/cf_background"
+    android:clipToPadding="false"
     android:fillViewport="true">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="@dimen/cf_screen_padding">
+        android:orientation="vertical">
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/cf_profile_title"
-            android:textAppearance="@style/TextAppearance.CampusForum.Headline" />
-
+        <!-- En-tête dégradé avec avatar + identité -->
         <LinearLayout
-            style="@style/Widget.CampusForum.Card"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/cf_section_spacing"
+            android:background="@drawable/bg_header"
             android:gravity="center"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:paddingStart="@dimen/cf_screen_padding"
+            android:paddingTop="@dimen/cf_spacing_6"
+            android:paddingEnd="@dimen/cf_screen_padding"
+            android:paddingBottom="@dimen/cf_spacing_7">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/cf_profile_title"
+                android:textAppearance="@style/TextAppearance.CampusForum.Display"
+                android:textSize="@dimen/cf_text_title" />
 
             <TextView
                 android:id="@+id/profile_avatar_initials_text"
-                android:layout_width="@dimen/cf_button_height"
-                android:layout_height="@dimen/cf_button_height"
-                android:background="@drawable/bg_chip_selected"
+                style="@style/Widget.CampusForum.BrandMark.OnDark"
+                android:layout_width="@dimen/cf_avatar_size"
+                android:layout_height="@dimen/cf_avatar_size"
+                android:layout_marginTop="@dimen/cf_spacing_5"
                 android:gravity="center"
                 android:text="@string/cf_profile_avatar_initials"
                 android:textColor="@color/cf_on_primary"
-                android:textSize="@dimen/cf_text_title"
+                android:textSize="@dimen/cf_text_headline"
                 android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/profile_username_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/cf_spacing_3"
+                android:layout_marginTop="@dimen/cf_spacing_4"
                 android:gravity="center"
                 android:text="@string/cf_profile_demo_name"
-                android:textAppearance="@style/TextAppearance.CampusForum.Title" />
+                android:textAppearance="@style/TextAppearance.CampusForum.Display"
+                android:textSize="@dimen/cf_text_title" />
 
             <TextView
                 android:id="@+id/profile_email_text"
@@ -52,157 +60,211 @@
                 android:layout_marginTop="@dimen/cf_spacing_1"
                 android:gravity="center"
                 android:text="@string/cf_profile_demo_email"
-                android:textAppearance="@style/TextAppearance.CampusForum.Caption" />
+                android:textAppearance="@style/TextAppearance.CampusForum.Subtitle.OnPrimary" />
 
             <TextView
                 android:id="@+id/profile_role_text"
-                style="@style/Widget.CampusForum.Chip.Selected"
+                style="@style/Widget.CampusForum.Badge.Admin"
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/cf_chip_height"
                 android:layout_marginTop="@dimen/cf_spacing_3"
                 android:gravity="center"
                 android:text="@string/cf_profile_role_user" />
+
+            <TextView
+                android:id="@+id/profile_member_since_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/cf_spacing_3"
+                android:gravity="center"
+                android:text="@string/cf_profile_member_since_preview"
+                android:textAppearance="@style/TextAppearance.CampusForum.Subtitle.OnPrimary" />
         </LinearLayout>
 
         <LinearLayout
-            style="@style/Widget.CampusForum.Card"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/cf_spacing_4"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:padding="@dimen/cf_screen_padding">
 
+            <!-- À propos -->
+            <LinearLayout
+                style="@style/Widget.CampusForum.Card"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/cf_profile_about"
+                        android:textAppearance="@style/TextAppearance.CampusForum.Title" />
+
+                    <TextView
+                        android:id="@+id/profile_edit_bio_button"
+                        style="@style/Widget.CampusForum.TextLink"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:foreground="?attr/selectableItemBackground"
+                        android:padding="@dimen/cf_spacing_2"
+                        android:text="@string/cf_profile_edit_bio" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/profile_bio_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/cf_spacing_2"
+                    android:text="@string/cf_profile_demo_bio"
+                    android:textAppearance="@style/TextAppearance.CampusForum.BodySmall" />
+            </LinearLayout>
+
+            <!-- Stats -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center_vertical"
+                android:layout_marginTop="@dimen/cf_spacing_4"
                 android:orientation="horizontal">
 
-                <TextView
+                <LinearLayout
+                    style="@style/Widget.CampusForum.Card"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="@string/cf_profile_about"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="@dimen/cf_stat_icon_size"
+                        android:layout_height="@dimen/cf_stat_icon_size"
+                        android:background="@drawable/bg_stat_icon"
+                        android:contentDescription="@string/cf_profile_topics_icon"
+                        android:padding="@dimen/cf_spacing_3"
+                        android:src="@drawable/ic_dashboard_topics"
+                        android:tint="@color/cf_primary" />
+
+                    <TextView
+                        android:id="@+id/profile_topics_count_text"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/cf_spacing_3"
+                        android:text="@string/cf_profile_topics_count"
+                        android:textAppearance="@style/TextAppearance.CampusForum.Headline" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/cf_spacing_1"
+                        android:text="@string/cf_profile_my_topics"
+                        android:textAppearance="@style/TextAppearance.CampusForum.Caption" />
+                </LinearLayout>
+
+                <LinearLayout
+                    style="@style/Widget.CampusForum.Card"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/cf_spacing_3"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="@dimen/cf_stat_icon_size"
+                        android:layout_height="@dimen/cf_stat_icon_size"
+                        android:background="@drawable/bg_stat_icon_accent"
+                        android:contentDescription="@string/cf_profile_replies_icon"
+                        android:padding="@dimen/cf_spacing_3"
+                        android:src="@drawable/ic_dashboard_replies"
+                        android:tint="@color/cf_accent" />
+
+                    <TextView
+                        android:id="@+id/profile_replies_count_text"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/cf_spacing_3"
+                        android:text="@string/cf_profile_replies_count"
+                        android:textAppearance="@style/TextAppearance.CampusForum.Headline" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/cf_spacing_1"
+                        android:text="@string/cf_profile_my_replies"
+                        android:textAppearance="@style/TextAppearance.CampusForum.Caption" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/profile_recent_topics_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/cf_section_spacing"
+                android:text="@string/cf_profile_recent_topics"
+                android:textAppearance="@style/TextAppearance.CampusForum.Title"
+                android:visibility="visible" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/profile_recent_topics_recycler_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/cf_spacing_4"
+                android:nestedScrollingEnabled="false" />
+
+            <LinearLayout
+                android:id="@+id/profile_recent_topics_empty_state"
+                style="@style/Widget.CampusForum.EmptyState"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/cf_spacing_4"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <FrameLayout
+                    android:layout_width="@dimen/cf_empty_icon_bg_size"
+                    android:layout_height="@dimen/cf_empty_icon_bg_size"
+                    android:background="@drawable/bg_empty_circle">
+
+                    <ImageView
+                        android:layout_width="@dimen/cf_empty_icon_size"
+                        android:layout_height="@dimen/cf_empty_icon_size"
+                        android:layout_gravity="center"
+                        android:contentDescription="@string/cf_profile_recent_topics_empty_title"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/ic_empty_state" />
+                </FrameLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/cf_spacing_4"
+                    android:gravity="center"
+                    android:text="@string/cf_profile_recent_topics_empty_title"
                     android:textAppearance="@style/TextAppearance.CampusForum.Title" />
 
                 <TextView
-                    android:id="@+id/profile_edit_bio_button"
-                    style="@style/Widget.CampusForum.TextLink"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:foreground="?attr/selectableItemBackground"
-                    android:padding="@dimen/cf_spacing_2"
-                    android:text="@string/cf_profile_edit_bio" />
-            </LinearLayout>
-
-            <TextView
-                android:id="@+id/profile_bio_text"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/cf_spacing_2"
-                android:text="@string/cf_profile_demo_bio"
-                android:textAppearance="@style/TextAppearance.CampusForum.BodySmall" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/cf_spacing_4"
-            android:orientation="horizontal">
-
-            <LinearLayout
-                style="@style/Widget.CampusForum.Card"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="vertical">
-
-                <TextView
-                    android:id="@+id/profile_topics_count_text"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/cf_profile_topics_count"
-                    android:textAppearance="@style/TextAppearance.CampusForum.Headline" />
-
-                <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/cf_spacing_1"
-                    android:text="@string/cf_profile_my_topics"
-                    android:textAppearance="@style/TextAppearance.CampusForum.Caption" />
+                    android:gravity="center"
+                    android:text="@string/cf_profile_recent_topics_empty_message"
+                    android:textAppearance="@style/TextAppearance.CampusForum.BodySmall" />
             </LinearLayout>
 
-            <LinearLayout
-                style="@style/Widget.CampusForum.Card"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/cf_spacing_3"
-                android:layout_weight="1"
-                android:orientation="vertical">
-
-                <TextView
-                    android:id="@+id/profile_replies_count_text"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/cf_profile_replies_count"
-                    android:textAppearance="@style/TextAppearance.CampusForum.Headline" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/cf_spacing_1"
-                    android:text="@string/cf_profile_my_replies"
-                    android:textAppearance="@style/TextAppearance.CampusForum.Caption" />
-            </LinearLayout>
-        </LinearLayout>
-
-        <TextView
-            android:id="@+id/profile_recent_topics_title"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/cf_section_spacing"
-            android:text="@string/cf_profile_recent_topics"
-            android:textAppearance="@style/TextAppearance.CampusForum.Title"
-            android:visibility="visible" />
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/profile_recent_topics_recycler_view"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/cf_spacing_3"
-            android:nestedScrollingEnabled="false" />
-
-        <LinearLayout
-            android:id="@+id/profile_recent_topics_empty_state"
-            style="@style/Widget.CampusForum.Card"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/cf_spacing_3"
-            android:orientation="vertical"
-            android:visibility="gone">
-
-            <TextView
+            <Button
+                android:id="@+id/profile_logout_button"
+                style="@style/Widget.CampusForum.Button.Destructive"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/cf_profile_recent_topics_empty_title"
-                android:textAppearance="@style/TextAppearance.CampusForum.Title" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/cf_spacing_1"
-                android:text="@string/cf_profile_recent_topics_empty_message"
-                android:textAppearance="@style/TextAppearance.CampusForum.BodySmall" />
+                android:layout_marginTop="@dimen/cf_section_spacing"
+                android:layout_marginBottom="@dimen/cf_spacing_6"
+                android:text="@string/cf_profile_logout" />
         </LinearLayout>
-
-        <Button
-            android:id="@+id/profile_logout_button"
-            style="@style/Widget.CampusForum.Button.Secondary"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/cf_section_spacing"
-            android:layout_marginBottom="@dimen/cf_spacing_6"
-            android:text="@string/cf_profile_logout" />
     </LinearLayout>
 </ScrollView>

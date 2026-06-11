@@ -6,22 +6,38 @@
     android:layout_marginBottom="@dimen/cf_spacing_3"
     android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/item_admin_category_name"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textAppearance="@style/TextAppearance.CampusForum.Title" />
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/item_admin_category_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textAppearance="@style/TextAppearance.CampusForum.Title" />
+
+        <TextView
+            style="@style/Widget.CampusForum.Chip.Default"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/cf_chip_height"
+            android:layout_marginStart="@dimen/cf_spacing_3"
+            android:gravity="center"
+            android:text="@string/cf_admin_category_status_active" />
+    </LinearLayout>
 
     <TextView
         android:id="@+id/item_admin_category_description"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/cf_spacing_1"
+        android:layout_marginTop="@dimen/cf_spacing_2"
         android:textAppearance="@style/TextAppearance.CampusForum.BodySmall" />
 
     <Button
         android:id="@+id/item_admin_category_delete_button"
-        style="@style/Widget.CampusForum.Button.Secondary"
+        style="@style/Widget.CampusForum.Button.Destructive"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="end"

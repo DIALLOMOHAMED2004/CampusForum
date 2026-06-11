@@ -60,7 +60,7 @@
             android:id="@+id/edit_topic_content_input"
             style="@style/Widget.CampusForum.Input"
             android:layout_width="match_parent"
-            android:layout_height="160dp"
+            android:layout_height="@dimen/cf_multiline_input_large"
             android:layout_marginTop="@dimen/cf_spacing_2"
             android:gravity="top|start"
             android:hint="@string/cf_create_topic_content_hint"

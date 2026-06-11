@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <shape android:shape="rectangle">
+            <solid android:color="@color/cf_warning" />
+            <corners android:radius="@dimen/cf_radius_small" />
+        </shape>
+    </item>
+    <item android:width="@dimen/cf_accent_bar_width" android:gravity="start">
+        <shape android:shape="rectangle">
+            <solid android:color="@color/cf_warning_text" />
+            <corners
+                android:topLeftRadius="@dimen/cf_radius_small"
+                android:bottomLeftRadius="@dimen/cf_radius_small" />
+        </shape>
+    </item>
+</layer-list>

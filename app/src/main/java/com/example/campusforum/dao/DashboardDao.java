@@ -80,6 +80,8 @@ public class DashboardDao {
                 " INNER JOIN " + DatabaseContract.Categories.TABLE_NAME + " c ON t." +
                 DatabaseContract.Topics.COLUMN_CATEGORY_ID + " = c." + DatabaseContract.Categories._ID +
                 " WHERE t." + DatabaseContract.Topics.COLUMN_IS_DELETED + " = 0" +
+                " AND u." + DatabaseContract.Users.COLUMN_IS_ACTIVE + " = 1" +
+                " AND c." + DatabaseContract.Categories.COLUMN_IS_ACTIVE + " = 1" +
                 " ORDER BY t." + DatabaseContract.Topics.COLUMN_CREATED_AT + " DESC" +
                 " LIMIT ?";
         String[] args = {String.valueOf(limit)};
