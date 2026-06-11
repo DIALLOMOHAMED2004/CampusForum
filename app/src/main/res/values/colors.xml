@@ -3,34 +3,62 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 
-    <!-- CampusForum brand palette: accessible minimalist direction from Paraflow. -->
-    <color name="cf_primary">#5B8C5A</color>
-    <color name="cf_primary_dark">#4A7049</color>
-    <color name="cf_primary_light">#7BA77A</color>
+    <!-- ============================================================= -->
+    <!--  CampusForum — Palette « Académique chaleureux »              -->
+    <!--  Vert forêt profond et soigné, accents miel/laiton,          -->
+    <!--  surfaces ivoire. Le vert d'origine est conservé mais        -->
+    <!--  approfondi et enrichi pour un rendu premium.                -->
+    <!-- ============================================================= -->
 
-    <!-- Light surfaces used to separate content without heavy borders or gradients. -->
-    <color name="cf_background">#FFFFFF</color>
-    <color name="cf_card">#F8FAF8</color>
-    <color name="cf_surface_secondary">#F0F4F0</color>
-    <color name="cf_input">#E8EDE8</color>
+    <!-- Vert de marque : forêt profond, plus saturé et élégant que l'ancien #5B8C5A -->
+    <color name="cf_primary">#1F6F54</color>
+    <color name="cf_primary_dark">#155240</color>
+    <color name="cf_primary_light">#3E9E7A</color>
+    <color name="cf_primary_pale">#E3F0EA</color>
 
-    <!-- Text hierarchy for academic reading comfort. -->
-    <color name="cf_text_primary">#1A1A1A</color>
-    <color name="cf_text_secondary">#4A4A4A</color>
-    <color name="cf_text_tertiary">#737373</color>
-    <color name="cf_text_hint">#A3A3A3</color>
+    <!-- Dégradé de marque (header, splash, brand mark) -->
+    <color name="cf_gradient_start">#23805F</color>
+    <color name="cf_gradient_end">#12503D</color>
 
-    <!-- Semantic color roles used by themes and reusable widgets. -->
+    <!-- Accent chaleureux : laiton/miel — la touche « surprise » qui réchauffe le vert -->
+    <color name="cf_accent">#C8923B</color>
+    <color name="cf_accent_light">#E4B763</color>
+    <color name="cf_accent_pale">#F7EEDD</color>
+
+    <!-- Surfaces ivoire : papier académique, pas de blanc clinique -->
+    <color name="cf_background">#FBFAF7</color>
+    <color name="cf_card">#FFFFFF</color>
+    <color name="cf_surface_secondary">#F1F4F0</color>
+    <color name="cf_input">#F3F5F1</color>
+    <color name="cf_input_focused">#FFFFFF</color>
+
+    <!-- Hiérarchie de texte (chaude, lisible) -->
+    <color name="cf_text_primary">#16241D</color>
+    <color name="cf_text_secondary">#46544D</color>
+    <color name="cf_text_tertiary">#728078</color>
+    <color name="cf_text_hint">#A2ADA6</color>
+
+    <!-- Rôles sémantiques -->
     <color name="cf_on_primary">#FFFFFF</color>
-    <color name="cf_on_background">#1A1A1A</color>
-    <color name="cf_divider">#E8EDE8</color>
-    <color name="cf_disabled">#DFE5DF</color>
+    <color name="cf_on_accent">#3A2A0C</color>
+    <color name="cf_on_background">#16241D</color>
+    <color name="cf_divider">#E7EBE6</color>
+    <color name="cf_divider_strong">#D8DED5</color>
+    <color name="cf_disabled">#D7DDD6</color>
+    <color name="cf_danger">#A8453B</color>
+    <color name="cf_danger_surface">#F8E7E4</color>
 
-    <!-- Functional feedback colors, kept soft to preserve the calm UI tone. -->
-    <color name="cf_error">#F0D4D0</color>
-    <color name="cf_success">#D4E8D4</color>
-    <color name="cf_warning">#F5E8D4</color>
-    <color name="cf_error_text">#7A2F2A</color>
-    <color name="cf_success_text">#2F6B35</color>
-    <color name="cf_warning_text">#7A5A22</color>
+    <!-- Ombres (Android n'utilise l'alpha que via elevation, mais on garde le token) -->
+    <color name="cf_shadow">#1A16241D</color>
+
+    <!-- Feedback fonctionnel, gardé doux -->
+    <color name="cf_error">#F4DAD6</color>
+    <color name="cf_success">#D6EBDD</color>
+    <color name="cf_warning">#F7EAD2</color>
+    <color name="cf_error_text">#8E342B</color>
+    <color name="cf_success_text">#1F6F54</color>
+    <color name="cf_warning_text">#8A6420</color>
+
+    <!-- Statut barres système -->
+    <color name="cf_status_bar">#12503D</color>
 </resources>

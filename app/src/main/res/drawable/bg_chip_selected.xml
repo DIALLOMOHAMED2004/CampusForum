@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<shape xmlns:android="http://schemas.android.com/apk/res/android">
-    <solid android:color="@color/cf_primary" />
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    <gradient
+        android:angle="135"
+        android:startColor="@color/cf_gradient_start"
+        android:endColor="@color/cf_gradient_end"
+        android:type="linear" />
     <corners android:radius="@dimen/cf_radius_full" />
 </shape>

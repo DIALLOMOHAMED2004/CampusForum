@@ -1,13 +1,12 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <style name="Base.Theme.CampusForum" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Phase 0 intentionally keeps the same light Paraflow direction in night mode. -->
         <item name="colorPrimary">@color/cf_primary</item>
         <item name="colorPrimaryDark">@color/cf_primary_dark</item>
-        <item name="colorAccent">@color/cf_primary_light</item>
+        <item name="colorAccent">@color/cf_accent</item>
         <item name="colorOnPrimary">@color/cf_on_primary</item>
-        <item name="colorSecondary">@color/cf_primary_light</item>
-        <item name="colorOnSecondary">@color/cf_on_primary</item>
-        <item name="colorSurface">@color/cf_background</item>
+        <item name="colorSecondary">@color/cf_accent</item>
+        <item name="colorOnSecondary">@color/cf_on_accent</item>
+        <item name="colorSurface">@color/cf_card</item>
         <item name="colorOnSurface">@color/cf_on_background</item>
         <item name="colorSurfaceVariant">@color/cf_surface_secondary</item>
         <item name="colorOnSurfaceVariant">@color/cf_text_secondary</item>
@@ -17,11 +16,11 @@
         <item name="android:colorBackground">@color/cf_background</item>
         <item name="android:textColorPrimary">@color/cf_text_primary</item>
         <item name="android:textColorSecondary">@color/cf_text_secondary</item>
-        <item name="android:statusBarColor">@color/cf_background</item>
+        <item name="android:statusBarColor">@color/cf_status_bar</item>
         <item name="android:navigationBarColor">@color/cf_background</item>
-        <item name="android:windowLightStatusBar">true</item>
+        <item name="android:windowLightStatusBar">false</item>
         <item name="android:windowLightNavigationBar" tools:targetApi="o_mr1">true</item>
-        <item name="android:fontFamily">sans</item>
+        <item name="android:fontFamily">sans-serif</item>
         <item name="android:forceDarkAllowed">false</item>
     </style>
 </resources>

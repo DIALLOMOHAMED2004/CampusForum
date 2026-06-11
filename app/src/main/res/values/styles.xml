@@ -1,15 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
+    <!-- ===================== BOUTONS ===================== -->
     <style name="Widget.CampusForum.Button.Primary" parent="Widget.MaterialComponents.Button">
         <item name="android:background">@drawable/bg_button_primary</item>
         <item name="backgroundTint">@null</item>
         <item name="android:textColor">@color/cf_on_primary</item>
         <item name="android:minHeight">@dimen/cf_button_height</item>
-        <item name="android:paddingStart">@dimen/cf_spacing_4</item>
-        <item name="android:paddingEnd">@dimen/cf_spacing_4</item>
+        <item name="android:paddingStart">@dimen/cf_spacing_5</item>
+        <item name="android:paddingEnd">@dimen/cf_spacing_5</item>
         <item name="android:textAllCaps">false</item>
         <item name="android:textStyle">bold</item>
+        <item name="android:letterSpacing">0.02</item>
         <item name="android:textSize">@dimen/cf_text_body</item>
+        <item name="android:stateListAnimator">@null</item>
+        <item name="android:elevation">0dp</item>
     </style>
 
     <style name="Widget.CampusForum.Button.Secondary" parent="Widget.MaterialComponents.Button">
@@ -17,13 +22,31 @@
         <item name="backgroundTint">@null</item>
         <item name="android:textColor">@color/cf_primary</item>
         <item name="android:minHeight">@dimen/cf_button_height</item>
-        <item name="android:paddingStart">@dimen/cf_spacing_4</item>
-        <item name="android:paddingEnd">@dimen/cf_spacing_4</item>
+        <item name="android:paddingStart">@dimen/cf_spacing_5</item>
+        <item name="android:paddingEnd">@dimen/cf_spacing_5</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:letterSpacing">0.02</item>
+        <item name="android:textSize">@dimen/cf_text_body</item>
+        <item name="android:stateListAnimator">@null</item>
+        <item name="android:elevation">0dp</item>
+    </style>
+
+    <style name="Widget.CampusForum.Button.Destructive" parent="Widget.MaterialComponents.Button">
+        <item name="android:background">@drawable/bg_button_destructive_outline</item>
+        <item name="backgroundTint">@null</item>
+        <item name="android:textColor">@color/cf_danger</item>
+        <item name="android:minHeight">@dimen/cf_button_height</item>
+        <item name="android:paddingStart">@dimen/cf_spacing_5</item>
+        <item name="android:paddingEnd">@dimen/cf_spacing_5</item>
         <item name="android:textAllCaps">false</item>
         <item name="android:textStyle">bold</item>
         <item name="android:textSize">@dimen/cf_text_body</item>
+        <item name="android:stateListAnimator">@null</item>
+        <item name="android:elevation">0dp</item>
     </style>
 
+    <!-- ===================== INPUT ===================== -->
     <style name="Widget.CampusForum.Input" parent="@android:style/Widget.EditText">
         <item name="android:background">@drawable/bg_input</item>
         <item name="android:textColor">@color/cf_text_primary</item>
@@ -34,17 +57,53 @@
         <item name="android:textSize">@dimen/cf_text_body</item>
     </style>
 
+    <!-- ===================== LIENS ===================== -->
     <style name="Widget.CampusForum.TextLink" parent="@android:style/Widget.TextView">
         <item name="android:textColor">@color/cf_primary</item>
         <item name="android:textSize">@dimen/cf_text_body_small</item>
         <item name="android:textStyle">bold</item>
     </style>
 
+    <!-- ===================== CARTES ===================== -->
+    <!-- Carte de base (LinearLayout) : fond + bordure douce. -->
     <style name="Widget.CampusForum.Card" parent="@android:style/Widget">
         <item name="android:background">@drawable/bg_card</item>
         <item name="android:padding">@dimen/cf_card_padding</item>
+        <item name="android:elevation">@dimen/cf_elevation_card</item>
     </style>
 
+    <style name="Widget.CampusForum.EmptyState" parent="@style/Widget.CampusForum.Card">
+        <item name="android:gravity">center</item>
+        <item name="android:padding">@dimen/cf_card_padding_large</item>
+    </style>
+
+    <!-- ===================== MONOGRAMME / BADGES ===================== -->
+    <style name="Widget.CampusForum.BrandMark" parent="@android:style/Widget.TextView">
+        <item name="android:background">@drawable/bg_brand_mark</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textColor">@color/cf_on_primary</item>
+        <item name="android:textSize">@dimen/cf_text_title</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:letterSpacing">0.05</item>
+        <item name="android:elevation">@dimen/cf_elevation_card_raised</item>
+    </style>
+
+    <style name="Widget.CampusForum.BrandMark.OnDark">
+        <item name="android:background">@drawable/bg_brand_mark_on_dark</item>
+        <item name="android:textColor">@color/cf_on_primary</item>
+        <item name="android:elevation">0dp</item>
+    </style>
+
+    <style name="Widget.CampusForum.Avatar" parent="@android:style/Widget.TextView">
+        <item name="android:background">@drawable/bg_avatar</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textColor">@color/cf_on_primary</item>
+        <item name="android:textSize">@dimen/cf_text_headline</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:elevation">@dimen/cf_elevation_card_raised</item>
+    </style>
+
+    <!-- ===================== CHIPS ===================== -->
     <style name="Widget.CampusForum.Chip.Default" parent="Widget.MaterialComponents.Chip.Action">
         <item name="android:background">@drawable/bg_chip_default</item>
         <item name="chipBackgroundColor">@color/cf_surface_secondary</item>
@@ -52,7 +111,8 @@
         <item name="android:minHeight">@dimen/cf_chip_height</item>
         <item name="android:paddingStart">@dimen/cf_spacing_4</item>
         <item name="android:paddingEnd">@dimen/cf_spacing_4</item>
-        <item name="android:textSize">@dimen/cf_text_body_small</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">@dimen/cf_text_caption</item>
     </style>
 
     <style name="Widget.CampusForum.Chip.Selected" parent="Widget.MaterialComponents.Chip.Action">
@@ -62,13 +122,48 @@
         <item name="android:minHeight">@dimen/cf_chip_height</item>
         <item name="android:paddingStart">@dimen/cf_spacing_4</item>
         <item name="android:paddingEnd">@dimen/cf_spacing_4</item>
-        <item name="android:textSize">@dimen/cf_text_body_small</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">@dimen/cf_text_caption</item>
+    </style>
+
+    <!-- Chip catégorie : accent miel, pour différencier les badges de catégorie -->
+    <style name="Widget.CampusForum.Chip.Category" parent="Widget.MaterialComponents.Chip.Action">
+        <item name="android:background">@drawable/bg_chip_category</item>
+        <item name="android:textColor">@color/cf_warning_text</item>
+        <item name="android:minHeight">@dimen/cf_chip_height</item>
+        <item name="android:paddingStart">@dimen/cf_spacing_4</item>
+        <item name="android:paddingEnd">@dimen/cf_spacing_4</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:letterSpacing">0.03</item>
+        <item name="android:textSize">@dimen/cf_text_caption</item>
+    </style>
+
+    <!-- Badge ADMIN : accent miel plein -->
+    <style name="Widget.CampusForum.Badge.Admin" parent="@android:style/Widget.TextView">
+        <item name="android:background">@drawable/bg_badge_admin</item>
+        <item name="android:textColor">@color/cf_on_accent</item>
+        <item name="android:minHeight">@dimen/cf_chip_height</item>
+        <item name="android:paddingStart">@dimen/cf_spacing_4</item>
+        <item name="android:paddingEnd">@dimen/cf_spacing_4</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:letterSpacing">0.08</item>
+        <item name="android:textSize">@dimen/cf_text_caption</item>
+    </style>
+
+    <!-- ===================== TYPOGRAPHIE ===================== -->
+    <style name="TextAppearance.CampusForum.Display" parent="TextAppearance.MaterialComponents.Headline4">
+        <item name="android:textColor">@color/cf_on_primary</item>
+        <item name="android:textSize">@dimen/cf_text_display</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:letterSpacing">-0.01</item>
     </style>
 
     <style name="TextAppearance.CampusForum.Headline" parent="TextAppearance.MaterialComponents.Headline6">
         <item name="android:textColor">@color/cf_text_primary</item>
         <item name="android:textSize">@dimen/cf_text_headline</item>
         <item name="android:textStyle">bold</item>
+        <item name="android:letterSpacing">-0.01</item>
     </style>
 
     <style name="TextAppearance.CampusForum.Title" parent="TextAppearance.MaterialComponents.Subtitle1">
@@ -80,16 +175,25 @@
     <style name="TextAppearance.CampusForum.Body" parent="TextAppearance.MaterialComponents.Body1">
         <item name="android:textColor">@color/cf_text_secondary</item>
         <item name="android:textSize">@dimen/cf_text_body</item>
+        <item name="android:lineSpacingMultiplier">1.3</item>
     </style>
 
     <style name="TextAppearance.CampusForum.BodySmall" parent="TextAppearance.MaterialComponents.Body2">
         <item name="android:textColor">@color/cf_text_secondary</item>
         <item name="android:textSize">@dimen/cf_text_body_small</item>
+        <item name="android:lineSpacingMultiplier">1.35</item>
     </style>
 
     <style name="TextAppearance.CampusForum.Caption" parent="TextAppearance.MaterialComponents.Caption">
         <item name="android:textColor">@color/cf_text_tertiary</item>
         <item name="android:textSize">@dimen/cf_text_caption</item>
+    </style>
+
+    <!-- Sous-titre clair pour les en-têtes sur fond dégradé -->
+    <style name="TextAppearance.CampusForum.Subtitle.OnPrimary" parent="TextAppearance.MaterialComponents.Body2">
+        <item name="android:textColor">#D8EDE4</item>
+        <item name="android:textSize">@dimen/cf_text_body_small</item>
+        <item name="android:lineSpacingMultiplier">1.3</item>
     </style>
 
     <style name="TextAppearance.CampusForum.Message.Error" parent="TextAppearance.MaterialComponents.Body2">
@@ -100,5 +204,32 @@
     <style name="TextAppearance.CampusForum.Message.Success" parent="TextAppearance.MaterialComponents.Body2">
         <item name="android:textColor">@color/cf_success_text</item>
         <item name="android:textSize">@dimen/cf_text_body_small</item>
+    </style>
+
+    <!-- ===================== FAB ===================== -->
+    <style name="Widget.CampusForum.FAB" parent="Widget.MaterialComponents.FloatingActionButton">
+        <item name="backgroundTint">@color/cf_primary</item>
+        <item name="tint">@color/cf_on_primary</item>
+        <item name="elevation">@dimen/cf_elevation_fab</item>
+        <item name="borderWidth">0dp</item>
+    </style>
+
+    <!-- ===================== MESSAGES ===================== -->
+    <style name="Widget.CampusForum.Message.Container.Error" parent="@android:style/Widget">
+        <item name="android:background">@drawable/bg_message_error</item>
+        <item name="android:padding">@dimen/cf_spacing_4</item>
+        <item name="android:paddingStart">@dimen/cf_spacing_5</item>
+    </style>
+
+    <style name="Widget.CampusForum.Message.Container.Success" parent="@android:style/Widget">
+        <item name="android:background">@drawable/bg_message_success</item>
+        <item name="android:padding">@dimen/cf_spacing_4</item>
+        <item name="android:paddingStart">@dimen/cf_spacing_5</item>
+    </style>
+
+    <style name="Widget.CampusForum.Message.Container.Warning" parent="@android:style/Widget">
+        <item name="android:background">@drawable/bg_message_warning</item>
+        <item name="android:padding">@dimen/cf_spacing_4</item>
+        <item name="android:paddingStart">@dimen/cf_spacing_5</item>
     </style>
 </resources>

@@ -74,6 +74,10 @@
     <string name="cf_home_empty_category_title">Aucun sujet dans cette catégorie</string>
     <string name="cf_home_empty_category_message">Les sujets de cette catégorie apparaîtront ici</string>
     <string name="cf_home_empty_search_category_message">Aucun sujet de cette catégorie ne correspond à votre recherche</string>
+    <!-- Fallbacks for missing data (robustness) -->
+    <string name="cf_category_unknown">Catégorie inconnue</string>
+    <string name="cf_author_unknown">Utilisateur inconnu</string>
+    <string name="cf_topic_no_preview">Aucun détail</string>
     <string name="cf_demo_topic_group_title">Comment organiser un groupe de révision ?</string>
     <string name="cf_demo_topic_group_body">Proposition de créneau et méthode de travail pour préparer les examens ensemble.</string>
     <string name="cf_demo_topic_database_title">Besoin aide sur les jointures SQL</string>
@@ -115,6 +119,7 @@
     <string name="cf_topic_detail_created_at_label">Créé le :</string>
     <string name="cf_topic_detail_reply_label">réponse</string>
     <string name="cf_topic_detail_replies_label">réponses</string>
+    <string name="cf_topic_detail_updated_at_format">Modifié %1$s</string>
     <string name="cf_topic_detail_error_missing">Sujet introuvable ou supprimé.</string>
     <string name="cf_topic_detail_error_forbidden">Droits insuffisants pour cette action.</string>
     <string name="cf_topic_detail_topic_edit_title">Modifier le sujet</string>
@@ -126,9 +131,11 @@
     <string name="cf_topic_detail_topic_error_delete">Impossible de supprimer le sujet.</string>
     <string name="cf_topic_detail_replies_section_title">Réponses</string>
     <string name="cf_topic_detail_replies_empty_title">Aucune réponse pour le moment.</string>
+    <string name="cf_topic_detail_replies_empty_message">Soyez le premier à répondre.</string>
     <string name="cf_topic_detail_reply_form_title">Ajouter une réponse</string>
     <string name="cf_topic_detail_reply_hint">Écrire une réponse...</string>
     <string name="cf_topic_detail_reply_send">Envoyer</string>
+    <string name="cf_topic_detail_reply_login_required">Connectez-vous pour répondre à ce sujet.</string>
     <string name="cf_topic_detail_reply_error_content">La réponse doit contenir au moins 2 caractères.</string>
     <string name="cf_topic_detail_reply_success">Réponse ajoutée avec succès</string>
     <string name="cf_topic_detail_reply_error_publish">Impossible d’ajouter la réponse.</string>
@@ -143,31 +150,41 @@
 
     <!-- Dashboard -->
     <string name="cf_dashboard_title">Tableau de bord</string>
+    <string name="cf_dashboard_summary">Vue synthétique de l’activité locale du forum</string>
+    <string name="cf_dashboard_admin_badge">ADMIN</string>
     <string name="cf_dashboard_active_topics">Sujets actifs</string>
     <string name="cf_dashboard_replies">Réponses</string>
     <string name="cf_dashboard_categories">Catégories</string>
     <string name="cf_dashboard_members">Membres actifs</string>
     <string name="cf_dashboard_recent_activity">Dernières activités</string>
-    <string name="cf_dashboard_stat_topics_count">12</string>
-    <string name="cf_dashboard_stat_replies_count">34</string>
-    <string name="cf_dashboard_stat_categories_count">6</string>
-    <string name="cf_dashboard_stat_members_count">18</string>
+    <string name="cf_dashboard_stat_topics_count">0</string>
+    <string name="cf_dashboard_stat_replies_count">0</string>
+    <string name="cf_dashboard_stat_categories_count">0</string>
+    <string name="cf_dashboard_stat_members_count">0</string>
+    <string name="cf_dashboard_stat_topics_icon">Icône sujets actifs</string>
+    <string name="cf_dashboard_stat_replies_icon">Icône réponses actives</string>
+    <string name="cf_dashboard_stat_categories_icon">Icône catégories actives</string>
+    <string name="cf_dashboard_stat_members_icon">Icône membres actifs</string>
     <string name="cf_dashboard_activity_topic_created">Nouveau sujet publié en Informatique</string>
     <string name="cf_dashboard_activity_reply_added">Réponse ajoutée dans Mathématiques</string>
     <string name="cf_dashboard_activity_time_recent">Il y a 10 min</string>
     <string name="cf_dashboard_activity_time_today">Aujourd’hui</string>
-    <string name="cf_dashboard_recent_topic_meta">%1$s - %2$s - %3$s</string>
+    <string name="cf_dashboard_recent_topic_meta">%1$s - %2$s</string>
     <string name="cf_dashboard_no_recent_activity">Aucune activité récente</string>
     <string name="cf_dashboard_no_recent_activity_message">Les sujets créés apparaîtront ici.</string>
 
     <!-- Admin -->
     <string name="cf_admin_title">Administration</string>
-    <string name="cf_admin_subtitle">Gérez les catégories disponibles dans le forum.</string>
+    <string name="cf_admin_subtitle">Supervision locale des catégories et de l’activité du forum.</string>
+    <string name="cf_admin_badge">ADMIN</string>
+    <string name="cf_admin_overview_section">Vue d’ensemble</string>
     <string name="cf_admin_categories_section">Gestion des catégories</string>
+    <string name="cf_admin_categories_help">Créez des espaces de discussion clairs pour structurer les échanges académiques.</string>
     <string name="cf_admin_category_name_hint">Nom de la catégorie</string>
     <string name="cf_admin_category_description_hint">Description optionnelle</string>
     <string name="cf_admin_category_add">Ajouter</string>
     <string name="cf_admin_active_categories">Catégories actives</string>
+    <string name="cf_admin_category_status_active">Active</string>
     <string name="cf_admin_categories_empty_title">Aucune catégorie active</string>
     <string name="cf_admin_categories_empty_message">Les catégories ajoutées apparaîtront ici.</string>
     <string name="cf_admin_category_delete_title">Supprimer la catégorie</string>
@@ -187,6 +204,10 @@
     <string name="cf_profile_demo_name">Amina Diallo</string>
     <string name="cf_profile_demo_email">amina.diallo@campus.local</string>
     <string name="cf_profile_role_user">USER</string>
+    <string name="cf_profile_role_member">Membre</string>
+    <string name="cf_profile_role_admin">Administrateur</string>
+    <string name="cf_profile_member_since">Membre depuis %1$s</string>
+    <string name="cf_profile_member_since_preview">Membre depuis aujourd’hui</string>
     <string name="cf_profile_about">À propos</string>
     <string name="cf_profile_edit_bio">Modifier</string>
     <string name="cf_profile_edit_bio_title">Modifier la bio</string>
@@ -198,6 +219,8 @@
     <string name="cf_profile_demo_bio">Étudiante active, intéressée par les bases de données et les groupes de révision.</string>
     <string name="cf_profile_my_topics">Mes sujets</string>
     <string name="cf_profile_my_replies">Mes réponses</string>
+    <string name="cf_profile_topics_icon">Icône des sujets créés</string>
+    <string name="cf_profile_replies_icon">Icône des réponses publiées</string>
     <string name="cf_profile_topics_count">4</string>
     <string name="cf_profile_replies_count">9</string>
     <string name="cf_profile_recent_topics">Mes sujets récents</string>

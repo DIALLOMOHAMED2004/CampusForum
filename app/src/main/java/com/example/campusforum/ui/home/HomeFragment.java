@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -32,6 +33,7 @@ import java.util.List;
 
 public class HomeFragment extends Fragment {
 
+    private static final String TAG = "HomeFragment";
     private static final long ALL_CATEGORIES_ID = -1L;
 
     private EditText searchInput;
@@ -87,13 +89,21 @@ public class HomeFragment extends Fragment {
     }
 
     private void loadTopics() {
-        List<Topic> topics = getFilteredTopics();
-        if (topics == null) {
-            topics = new ArrayList<>();
+        try {
+            List<Topic> topics = getFilteredTopics();
+            if (topics == null) {
+                topics = new ArrayList<>();
+            }
+            topicAdapter.updateTopics(topics);
+            updateUIVisibility(!topics.isEmpty());
+        } catch (Exception e) {
+            Log.e(TAG, "Unable to load topics", e);
+            topicAdapter.updateTopics(new ArrayList<>());
+            updateUIVisibility(false);
         }
-        topicAdapter.updateTopics(topics);
+    }
 
-        boolean hasTopics = !topics.isEmpty();
+    private void updateUIVisibility(boolean hasTopics) {
         topicsRecyclerView.setVisibility(hasTopics ? View.VISIBLE : View.GONE);
         emptyStateView.setVisibility(hasTopics ? View.GONE : View.VISIBLE);
         if (!hasTopics) {
@@ -160,8 +170,13 @@ public class HomeFragment extends Fragment {
     }
 
     private void loadCategories() {
-        List<Category> loadedCategories = categoryDao.getActiveCategories();
-        categories = loadedCategories == null ? new ArrayList<>() : loadedCategories;
+        try {
+            List<Category> loadedCategories = categoryDao.getActiveCategories();
+            categories = loadedCategories == null ? new ArrayList<>() : loadedCategories;
+        } catch (Exception e) {
+            Log.e(TAG, "Unable to load categories", e);
+            categories = new ArrayList<>();
+        }
         renderCategoryChips();
     }
 

@@ -31,6 +31,10 @@ public class ReplyRepository {
         return replyDao.getActiveRepliesByTopic(topicId);
     }
 
+    public boolean hasLoggedInUser() {
+        return sessionManager.getUserId() > 0;
+    }
+
     public ReplyActionResult createReply(long topicId, String content) {
         String normalizedContent = normalize(content);
         String validationError = getContentValidationError(normalizedContent);

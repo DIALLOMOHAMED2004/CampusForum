@@ -38,17 +38,20 @@ public class TopicDetailActivity extends AppCompatActivity implements ReplyAdapt
     private TextView contentText;
     private TextView authorText;
     private TextView createdAtText;
+    private TextView updatedAtText;
     private TextView replyCountText;
     private Button topicActionsButton;
     private RecyclerView repliesRecyclerView;
     private View repliesEmptyState;
     private EditText replyInput;
+    private TextView replyLoginMessageText;
     private Button sendReplyButton;
     private TopicRepository topicRepository;
     private ReplyRepository replyRepository;
     private ReplyAdapter replyAdapter;
     private Topic currentTopic;
     private long topicId;
+    private boolean firstResume = true;
     private boolean sendingReply;
     private boolean deletingTopic;
     private boolean deletingReply;
@@ -68,6 +71,10 @@ public class TopicDetailActivity extends AppCompatActivity implements ReplyAdapt
     @Override
     protected void onResume() {
         super.onResume();
+        if (firstResume) {
+            firstResume = false;
+            return;
+        }
         if (topicRepository != null && topicId > 0) {
             loadTopic();
         }
@@ -79,11 +86,13 @@ public class TopicDetailActivity extends AppCompatActivity implements ReplyAdapt
         contentText = findViewById(R.id.topic_detail_content);
         authorText = findViewById(R.id.topic_detail_author);
         createdAtText = findViewById(R.id.topic_detail_created_at);
+        updatedAtText = findViewById(R.id.topic_detail_updated_at);
         replyCountText = findViewById(R.id.topic_detail_reply_count);
         topicActionsButton = findViewById(R.id.topic_detail_actions_button);
         repliesRecyclerView = findViewById(R.id.topic_detail_replies_recycler_view);
         repliesEmptyState = findViewById(R.id.topic_detail_replies_empty_state);
         replyInput = findViewById(R.id.topic_detail_reply_input);
+        replyLoginMessageText = findViewById(R.id.topic_detail_reply_login_message);
         sendReplyButton = findViewById(R.id.topic_detail_send_reply_button);
 
         replyAdapter = new ReplyAdapter(this);
@@ -124,10 +133,12 @@ public class TopicDetailActivity extends AppCompatActivity implements ReplyAdapt
         createdAtText.setText(getString(
                 R.string.cf_topic_detail_created_at_format,
                 DateUtils.formatRelativeDate(topic.getCreatedAt())));
+        bindUpdatedAt(topic);
         updateReplyCount(topic.getReplyCount());
         topicActionsButton.setVisibility(topicRepository.canManageTopic(topic)
                 ? View.VISIBLE
                 : View.GONE);
+        updateReplyFormState();
     }
 
     private void loadReplies() {
@@ -147,15 +158,20 @@ public class TopicDetailActivity extends AppCompatActivity implements ReplyAdapt
         if (sendingReply) {
             return;
         }
+        if (!replyRepository.hasLoggedInUser()) {
+            Toast.makeText(this, R.string.cf_topic_detail_reply_login_required, Toast.LENGTH_SHORT).show();
+            updateReplyFormState();
+            return;
+        }
 
         replyInput.setError(null);
         sendingReply = true;
-        sendReplyButton.setEnabled(false);
+        updateReplyFormState();
         ReplyRepository.ReplyActionResult result = replyRepository.createReply(
                 topicId,
                 replyInput.getText().toString());
         sendingReply = false;
-        sendReplyButton.setEnabled(true);
+        updateReplyFormState();
         if (result.isSuccess()) {
             replyInput.setText("");
             loadReplies();
@@ -164,6 +180,34 @@ public class TopicDetailActivity extends AppCompatActivity implements ReplyAdapt
             replyInput.setError(result.getMessage());
             Toast.makeText(this, result.getMessage(), Toast.LENGTH_SHORT).show();
         }
+    }
+
+    private void bindUpdatedAt(Topic topic) {
+        if (hasMeaningfulUpdatedAt(topic)) {
+            updatedAtText.setText(getString(
+                    R.string.cf_topic_detail_updated_at_format,
+                    DateUtils.formatRelativeDate(topic.getUpdatedAt())));
+            updatedAtText.setVisibility(View.VISIBLE);
+        } else {
+            updatedAtText.setVisibility(View.GONE);
+        }
+    }
+
+    private boolean hasMeaningfulUpdatedAt(Topic topic) {
+        String createdAt = normalizeDate(topic.getCreatedAt());
+        String updatedAt = normalizeDate(topic.getUpdatedAt());
+        return !updatedAt.isEmpty() && !updatedAt.equals(createdAt);
+    }
+
+    private String normalizeDate(String value) {
+        return value == null ? "" : value.trim();
+    }
+
+    private void updateReplyFormState() {
+        boolean canReply = replyRepository.hasLoggedInUser();
+        replyInput.setEnabled(canReply && !sendingReply);
+        sendReplyButton.setEnabled(canReply && !sendingReply);
+        replyLoginMessageText.setVisibility(canReply ? View.GONE : View.VISIBLE);
     }
 
     @Override

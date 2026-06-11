@@ -27,6 +27,7 @@ import com.example.campusforum.model.User;
 import com.example.campusforum.repository.AuthRepository;
 import com.example.campusforum.ui.auth.LoginActivity;
 import com.example.campusforum.ui.topic.TopicDetailActivity;
+import com.example.campusforum.utils.DateUtils;
 import com.example.campusforum.utils.SessionManager;
 
 import java.util.ArrayList;
@@ -42,6 +43,7 @@ public class ProfileFragment extends Fragment {
     private TextView usernameText;
     private TextView emailText;
     private TextView roleText;
+    private TextView memberSinceText;
     private TextView bioText;
     private TextView editBioButton;
     private TextView topicsCountText;
@@ -93,6 +95,7 @@ public class ProfileFragment extends Fragment {
         usernameText = view.findViewById(R.id.profile_username_text);
         emailText = view.findViewById(R.id.profile_email_text);
         roleText = view.findViewById(R.id.profile_role_text);
+        memberSinceText = view.findViewById(R.id.profile_member_since_text);
         bioText = view.findViewById(R.id.profile_bio_text);
         editBioButton = view.findViewById(R.id.profile_edit_bio_button);
         topicsCountText = view.findViewById(R.id.profile_topics_count_text);
@@ -126,7 +129,8 @@ public class ProfileFragment extends Fragment {
         currentBio = user.getBio();
         usernameText.setText(user.getUsername());
         emailText.setText(user.getEmail());
-        roleText.setText(user.getRole());
+        roleText.setText(getRoleLabel(user.getRole()));
+        bindMemberSince(user.getCreatedAt());
         avatarInitialsText.setText(getInitials(user.getUsername()));
         bioText.setText(isBlank(currentBio) ? getString(R.string.cf_profile_empty_bio) : currentBio);
         topicsCountText.setText(String.valueOf(topicDao.getActiveTopicCountByAuthor(userId)));
@@ -151,6 +155,24 @@ public class ProfileFragment extends Fragment {
         }
 
         return initials.toString().toUpperCase(Locale.getDefault());
+    }
+
+    private String getRoleLabel(String role) {
+        if ("ADMIN".equals(role)) {
+            return getString(R.string.cf_profile_role_admin);
+        }
+        return getString(R.string.cf_profile_role_member);
+    }
+
+    private void bindMemberSince(String createdAt) {
+        String formattedDate = DateUtils.formatRelativeDate(createdAt);
+        if (isBlank(formattedDate)) {
+            memberSinceText.setVisibility(View.GONE);
+            return;
+        }
+
+        memberSinceText.setText(getString(R.string.cf_profile_member_since, formattedDate));
+        memberSinceText.setVisibility(View.VISIBLE);
     }
 
     private boolean isBlank(String value) {

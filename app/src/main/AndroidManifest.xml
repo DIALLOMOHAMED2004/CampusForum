@@ -31,6 +31,7 @@
             android:exported="false" />
         <activity
             android:name=".ui.auth.SplashActivity"
+            android:theme="@style/Theme.CampusForum.Splash"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

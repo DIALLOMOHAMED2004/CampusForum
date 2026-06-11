@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:state_focused="true">
-        <shape>
-            <solid android:color="@color/cf_input" />
-            <stroke android:width="@dimen/cf_stroke_width" android:color="@color/cf_primary" />
+        <shape android:shape="rectangle">
+            <solid android:color="@color/cf_input_focused" />
+            <stroke android:width="@dimen/cf_stroke_width_thick" android:color="@color/cf_primary" />
             <corners android:radius="@dimen/cf_radius_medium" />
         </shape>
     </item>
     <item>
-        <shape>
+        <shape android:shape="rectangle">
             <solid android:color="@color/cf_input" />
+            <stroke android:width="@dimen/cf_stroke_width" android:color="@color/cf_divider_strong" />
             <corners android:radius="@dimen/cf_radius_medium" />
         </shape>
     </item>

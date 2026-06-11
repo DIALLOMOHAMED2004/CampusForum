@@ -29,6 +29,7 @@ public class DashboardFragment extends Fragment {
     private TextView repliesCountText;
     private TextView categoriesCountText;
     private TextView membersCountText;
+    private View adminBadgeView;
     private View membersCardView;
     private RecyclerView recentActivitiesRecyclerView;
     private View recentActivitiesEmptyView;
@@ -67,6 +68,7 @@ public class DashboardFragment extends Fragment {
         repliesCountText = view.findViewById(R.id.dashboard_replies_count);
         categoriesCountText = view.findViewById(R.id.dashboard_categories_count);
         membersCountText = view.findViewById(R.id.dashboard_members_count);
+        adminBadgeView = view.findViewById(R.id.dashboard_admin_badge);
         membersCardView = view.findViewById(R.id.dashboard_members_card);
         recentActivitiesRecyclerView = view.findViewById(R.id.dashboard_recent_activities_recycler_view);
         recentActivitiesEmptyView = view.findViewById(R.id.dashboard_recent_activities_empty_state);
@@ -96,6 +98,7 @@ public class DashboardFragment extends Fragment {
         categoriesCountText.setText(String.valueOf(dashboardState.getActiveCategoryCount()));
 
         membersCardView.setVisibility(dashboardState.shouldShowMemberCount() ? View.VISIBLE : View.GONE);
+        adminBadgeView.setVisibility(dashboardState.shouldShowMemberCount() ? View.VISIBLE : View.GONE);
         if (dashboardState.shouldShowMemberCount()) {
             membersCountText.setText(String.valueOf(dashboardState.getActiveMemberCount()));
         }

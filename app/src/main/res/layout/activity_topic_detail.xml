@@ -16,6 +16,8 @@
             style="@style/Widget.CampusForum.Button.Secondary"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:drawableStart="@drawable/ic_action_back"
+            android:drawablePadding="@dimen/cf_spacing_1"
             android:text="@string/cf_action_back" />
 
         <LinearLayout
@@ -52,6 +54,14 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/cf_spacing_1"
                 android:textAppearance="@style/TextAppearance.CampusForum.Caption" />
+
+            <TextView
+                android:id="@+id/topic_detail_updated_at"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/cf_spacing_1"
+                android:textAppearance="@style/TextAppearance.CampusForum.Caption"
+                android:visibility="gone" />
 
             <TextView
                 android:id="@+id/topic_detail_reply_count"
@@ -109,18 +119,36 @@
 
         <LinearLayout
             android:id="@+id/topic_detail_replies_empty_state"
-            style="@style/Widget.CampusForum.Card"
+            style="@style/Widget.CampusForum.EmptyState"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/cf_spacing_3"
             android:orientation="vertical"
             android:visibility="gone">
 
+            <ImageView
+                android:layout_width="@dimen/cf_empty_icon_size"
+                android:layout_height="@dimen/cf_empty_icon_size"
+                android:contentDescription="@string/cf_topic_detail_replies_empty_title"
+                android:scaleType="fitCenter"
+                android:src="@drawable/ic_empty_state"
+                android:tint="@color/cf_primary_light" />
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/cf_spacing_3"
+                android:gravity="center"
                 android:text="@string/cf_topic_detail_replies_empty_title"
                 android:textAppearance="@style/TextAppearance.CampusForum.BodySmall" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/cf_spacing_1"
+                android:gravity="center"
+                android:text="@string/cf_topic_detail_replies_empty_message"
+                android:textAppearance="@style/TextAppearance.CampusForum.Caption" />
         </LinearLayout>
 
         <LinearLayout
@@ -141,12 +169,21 @@
                 android:id="@+id/topic_detail_reply_input"
                 style="@style/Widget.CampusForum.Input"
                 android:layout_width="match_parent"
-                android:layout_height="120dp"
+                android:layout_height="@dimen/cf_multiline_input_medium"
                 android:layout_marginTop="@dimen/cf_spacing_3"
                 android:gravity="top|start"
                 android:hint="@string/cf_topic_detail_reply_hint"
                 android:inputType="textMultiLine|textCapSentences"
                 android:minLines="4" />
+
+            <TextView
+                android:id="@+id/topic_detail_reply_login_message"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/cf_spacing_2"
+                android:text="@string/cf_topic_detail_reply_login_required"
+                android:textAppearance="@style/TextAppearance.CampusForum.Caption"
+                android:visibility="gone" />
 
             <Button
                 android:id="@+id/topic_detail_send_reply_button"

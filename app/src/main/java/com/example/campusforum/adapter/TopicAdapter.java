@@ -77,12 +77,29 @@ public class TopicAdapter extends RecyclerView.Adapter<TopicAdapter.TopicViewHol
         }
 
         void bind(Topic topic, OnTopicClickListener clickListener) {
-            categoryText.setText(safeText(topic.getCategory()));
+            // Safe null checks for robustness
+            String category = safeText(topic.getCategory());
+            if (category.isEmpty()) {
+                category = itemView.getContext().getString(R.string.cf_category_unknown);
+            }
+            categoryText.setText(category);
+
             titleText.setText(safeText(topic.getTitle()));
-            previewText.setText(safeText(topic.getPreview()));
+
+            String preview = safeText(topic.getPreview());
+            if (preview.isEmpty()) {
+                preview = itemView.getContext().getString(R.string.cf_topic_no_preview);
+            }
+            previewText.setText(preview);
+
+            String authorName = safeText(topic.getAuthorName());
+            if (authorName.isEmpty()) {
+                authorName = itemView.getContext().getString(R.string.cf_author_unknown);
+            }
             authorText.setText(itemView.getContext().getString(
                     R.string.cf_author_format,
-                    safeText(topic.getAuthorName())));
+                    authorName));
+
             String replyLabel = topic.getReplyCount() > 1
                     ? itemView.getContext().getString(R.string.cf_topic_detail_replies_label)
                     : itemView.getContext().getString(R.string.cf_topic_detail_reply_label);
@@ -91,6 +108,7 @@ public class TopicAdapter extends RecyclerView.Adapter<TopicAdapter.TopicViewHol
                     DateUtils.formatRelativeDate(topic.getCreatedAt()),
                     topic.getReplyCount(),
                     replyLabel));
+
             itemView.setOnClickListener(view -> {
                 if (clickListener != null) {
                     clickListener.onTopicClick(topic);

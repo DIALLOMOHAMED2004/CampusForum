@@ -58,22 +58,34 @@ public class DashboardRecentTopicAdapter
     static class RecentTopicViewHolder extends RecyclerView.ViewHolder {
 
         private final TextView titleText;
+        private final TextView categoryText;
         private final TextView metaText;
 
         RecentTopicViewHolder(@NonNull View itemView) {
             super(itemView);
             titleText = itemView.findViewById(R.id.item_dashboard_recent_topic_title);
+            categoryText = itemView.findViewById(R.id.item_dashboard_recent_topic_category);
             metaText = itemView.findViewById(R.id.item_dashboard_recent_topic_meta);
         }
 
         void bind(DashboardRepository.RecentTopic topic, OnRecentTopicClickListener clickListener) {
             titleText.setText(safeText(topic.getTitle()));
+
+            String categoryName = safeText(topic.getCategoryName());
+            if (categoryName.isEmpty()) {
+                categoryName = itemView.getContext().getString(R.string.cf_category_unknown);
+            }
+            categoryText.setText(categoryName);
+
+            String authorName = safeText(topic.getAuthorName());
+            if (authorName.isEmpty()) {
+                authorName = itemView.getContext().getString(R.string.cf_author_unknown);
+            }
             metaText.setText(itemView.getContext().getString(
                     R.string.cf_dashboard_recent_topic_meta,
                     itemView.getContext().getString(
                             R.string.cf_author_format,
-                            safeText(topic.getAuthorName())),
-                    safeText(topic.getCategoryName()),
+                            authorName),
                     DateUtils.formatRelativeDate(topic.getCreatedAt())));
 
             itemView.setOnClickListener(view -> {
