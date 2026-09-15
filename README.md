@@ -75,8 +75,8 @@ Tables principales :
 - `replies`
 
 Le schéma est défini dans :
-- `/home/runner/work/CampusForum/CampusForum/app/src/main/java/com/example/campusforum/database/DatabaseContract.java`
-- `/home/runner/work/CampusForum/CampusForum/app/src/main/java/com/example/campusforum/database/DatabaseHelper.java`
+- `app/src/main/java/com/example/campusforum/database/DatabaseContract.java`
+- `app/src/main/java/com/example/campusforum/database/DatabaseHelper.java`
 
 À la création de la base, des catégories par défaut et un compte administrateur sont insérés automatiquement.
 
@@ -96,8 +96,7 @@ Créé automatiquement si absent :
 
 ## Lancer le projet
 
-1. Ouvrir le dossier racine dans Android Studio  
-   `/home/runner/work/CampusForum/CampusForum`
+1. Ouvrir le dossier racine du projet dans Android Studio
 2. Synchroniser Gradle
 3. Lancer l’application sur émulateur ou appareil Android
 
